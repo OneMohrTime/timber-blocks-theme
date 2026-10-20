@@ -1,0 +1,39 @@
+{
+  "name": "theme/hero",
+  "title": "Hero",
+  "category": "layout",
+  "icon": "cover-image",
+  "supports": {
+    "align": true,
+    "html": false
+  },
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "default": "Featured"
+    },
+    "title": {
+      "type": "string",
+      "default": "Build a better website with block-based content."
+    },
+    "text": {
+      "type": "string",
+      "default": "Use large, structured sections to create a flexible, easy-to-edit page experience."
+    },
+    "buttonLabel": {
+      "type": "string",
+      "default": "Get Started"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "#"
+    },
+    "mediaId": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "editorScript": "file:./editor.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+}

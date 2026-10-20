@@ -1,0 +1,17 @@
+<section class="c-block c-cta-banner" data-module="cta-banner">
+  <div class="c-block__inner">
+    {% if title %}
+      <h2>{{ title }}</h2>
+    {% endif %}
+
+    {% if text %}
+      <p>{{ text }}</p>
+    {% endif %}
+
+    {% if buttonLabel %}
+      <div class="c-button-group">
+        <a class="c-button c-button--primary" href="{{ buttonUrl }}">{{ buttonLabel }}</a>
+      </div>
+    {% endif %}
+  </div>
+</section>

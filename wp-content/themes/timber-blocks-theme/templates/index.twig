@@ -1,0 +1,14 @@
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+if ( class_exists( 'Timber\Timber' ) ) {
+    $context = Timber\Timber::context();
+    Timber\Timber::render( 'index.twig', $context );
+    return;
+}
+
+get_header();
+?><main class="l-main"><div class="l-wrap"><h1>Theme scaffold ready</h1></div></main><?php get_footer();

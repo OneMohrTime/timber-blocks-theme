@@ -1,0 +1,17 @@
+{
+  "name": "theme/cta-banner",
+  "title": "CTA Banner",
+  "category": "layout",
+  "icon": "megaphone",
+  "supports": {
+    "align": true,
+    "html": false
+  },
+  "attributes": {
+    "title": { "type": "string", "default": "Ready to get started?" },
+    "text": { "type": "string", "default": "Use a clear call-to-action to direct visitors to the next step." },
+    "buttonLabel": { "type": "string", "default": "Book a call" },
+    "buttonUrl": { "type": "string", "default": "#" }
+  },
+  "render": "file:./render.php"
+}

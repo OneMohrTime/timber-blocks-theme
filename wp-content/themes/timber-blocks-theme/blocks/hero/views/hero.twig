@@ -1,0 +1,27 @@
+<section class="c-block c-hero" data-module="hero">
+  <div class="c-block__inner c-hero__inner">
+    <div class="c-hero__content">
+      {% if eyebrow %}
+        <span class="c-hero__eyebrow">{{ eyebrow }}</span>
+      {% endif %}
+
+      {% if title %}
+        <h2 class="c-hero__title">{{ title }}</h2>
+      {% endif %}
+
+      {% if text %}
+        <p class="c-hero__text">{{ text }}</p>
+      {% endif %}
+
+      {% if buttonLabel %}
+        <div class="c-button-group">
+          <a class="c-button c-button--primary" href="{{ buttonUrl }}">{{ buttonLabel }}</a>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if media %}
+      <div class="c-hero__media">{{ media|raw }}</div>
+    {% endif %}
+  </div>
+</section>

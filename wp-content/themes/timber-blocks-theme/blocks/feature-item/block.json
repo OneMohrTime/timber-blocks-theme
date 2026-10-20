@@ -1,0 +1,14 @@
+{
+  "name": "theme/feature-item",
+  "title": "Feature Item",
+  "category": "text",
+  "icon": "star-empty",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "title": { "type": "string", "default": "Feature title" },
+    "text": { "type": "string", "default": "Describe the benefit of this feature." }
+  },
+  "render": "file:./render.php"
+}
