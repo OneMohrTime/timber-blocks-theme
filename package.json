@@ -1,20 +1,20 @@
 {
   "name": "timber-blocks-theme",
   "version": "1.0.0",
-  "private": true,
+  "description": "Package manager for timber-blocks-theme",
+  "homepage": "https://github.com/OneMohrTime/timber-blocks-theme#readme",
+  "bugs": {
+    "url": "https://github.com/OneMohrTime/timber-blocks-theme/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OneMohrTime/timber-blocks-theme.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "webpack.mix.js",
   "scripts": {
-    "dev": "npm run development",
-    "development": "npx mix",
-    "watch": "npx mix watch",
-    "build": "npm run production",
-    "production": "npx mix --production"
-  },
-  "devDependencies": {
-    "laravel-mix": "^6.0.49",
-    "sass": "^1.77.6",
-    "sass-loader": "^12.6.0"
-  },
-  "dependencies": {
-    "modujs": "^1.4.2"
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
