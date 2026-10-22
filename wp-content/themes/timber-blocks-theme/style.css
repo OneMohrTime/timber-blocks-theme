@@ -1,10 +1,14 @@
 /*
-Theme Name: Timber Blocks Theme
-Theme URI: https://github.com/OneMohrTime/timber-blocks-theme
-Author: OneMohrTime
-Description: Block-based Timber starter theme for drag-and-drop editing.
-Version: 1.0.0
-Text Domain: timber-blocks-theme
+ * Theme Name: My Timber 2.x Blocks Theme 1.0.0-beta
+ * Theme URI: https://github.com/OneMohrTime/timber-starter-theme
+ * Author: Derek Mohr
+ * Author URI: https://onemohrti.me
+ * Description: Starter Theme to use with Timber. Blocks-ready and optimized for modern WordPress development.
+ * Version: 1.0.0-beta
+ * Requires at least: 7.0
+ * Tested up to: 7.1
+ * Requires PHP: 8.3
+ * License: GNU General Public License v2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: timber-starter-theme
 */
-
-/* This file intentionally left blank. Styles are compiled via Laravel Mix. */
