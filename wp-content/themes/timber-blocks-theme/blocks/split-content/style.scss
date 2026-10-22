@@ -1,0 +1,24 @@
+.c-split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  align-items: center;
+}
+
+.c-split--reverse {
+  direction: rtl;
+}
+
+.c-split--reverse > * {
+  direction: ltr;
+}
+
+.c-split__media img {
+  border-radius: 1rem;
+}
+
+@media (max-width: 768px) {
+  .c-split {
+    grid-template-columns: 1fr;
+  }
+}

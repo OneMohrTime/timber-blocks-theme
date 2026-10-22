@@ -14,5 +14,7 @@
     "mediaId": { "type": "number", "default": 0 },
     "alignment": { "type": "string", "default": "left" }
   },
+  "style": "file:../../assets/css/split-style.css",
+  "script": "file:../../assets/js/split-script.js",
   "render": "file:./render.php"
 }

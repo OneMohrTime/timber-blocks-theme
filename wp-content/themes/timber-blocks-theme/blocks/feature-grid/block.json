@@ -12,5 +12,7 @@
     "title": { "type": "string", "default": "Built for clarity and flexibility." },
     "text": { "type": "string", "default": "Large section blocks keep the page simple and structured for editors." }
   },
+  "style": "file:../../assets/css/feature-style.css",
+  "script": "file:../../assets/js/feature-script.js",
   "render": "file:./render.php"
 }

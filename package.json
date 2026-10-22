@@ -1,20 +1,18 @@
 {
   "name": "timber-blocks-theme",
-  "version": "1.0.0",
-  "description": "Package manager for timber-blocks-theme",
-  "homepage": "https://github.com/OneMohrTime/timber-blocks-theme#readme",
-  "bugs": {
-    "url": "https://github.com/OneMohrTime/timber-blocks-theme/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/OneMohrTime/timber-blocks-theme.git"
-  },
-  "license": "ISC",
-  "author": "",
-  "type": "commonjs",
-  "main": "webpack.mix.js",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "production": "vite build"
+  },
+  "devDependencies": {
+    "sass": "^1.77.8",
+    "vite": "^5.4.10"
+  },
+  "dependencies": {
+    "modujs": "^1.4.2"
   }
 }

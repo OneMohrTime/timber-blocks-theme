@@ -13,5 +13,7 @@
     "buttonLabel": { "type": "string", "default": "Book a call" },
     "buttonUrl": { "type": "string", "default": "#" }
   },
+  "style": "file:../../assets/css/cta-style.css",
+  "script": "file:../../assets/js/cta-script.js",
   "render": "file:./render.php"
 }
