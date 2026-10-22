@@ -1,0 +1,21 @@
+<section class="c-block c-split-block" data-module="split-content">
+  <div class="c-block__inner c-split{% if alignment == 'right' %} c-split--reverse{% endif %}">
+    <div class="c-split__content">
+      {% if eyebrow %}
+        <span class="c-block__eyebrow">{{ eyebrow }}</span>
+      {% endif %}
+
+      {% if title %}
+        <h2>{{ title }}</h2>
+      {% endif %}
+
+      {% if text %}
+        <p>{{ text }}</p>
+      {% endif %}
+    </div>
+
+    {% if media %}
+      <div class="c-split__media">{{ media|raw }}</div>
+    {% endif %}
+  </div>
+</section>

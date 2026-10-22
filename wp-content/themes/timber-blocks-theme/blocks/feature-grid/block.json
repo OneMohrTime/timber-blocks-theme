@@ -1,0 +1,16 @@
+{
+  "name": "theme/feature-grid",
+  "title": "Feature Grid",
+  "category": "layout",
+  "icon": "grid-view",
+  "supports": {
+    "align": true,
+    "html": false
+  },
+  "attributes": {
+    "eyebrow": { "type": "string", "default": "Features" },
+    "title": { "type": "string", "default": "Built for clarity and flexibility." },
+    "text": { "type": "string", "default": "Large section blocks keep the page simple and structured for editors." }
+  },
+  "render": "file:./render.php"
+}

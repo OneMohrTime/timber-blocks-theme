@@ -1,0 +1,10 @@
+## Team
+
+Derek Mohr / OneMohrTime Design Co.
+https://onemohrti.me/
+@onemohrtimedesign
+
+
+## Site
+
+Software: Built with [Timber](https://upstatement.com/timber/) by Upstatement
