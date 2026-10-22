@@ -11,6 +11,7 @@ class StarterSite extends Site {
         add_action( 'init', array( $this, 'register_post_types' ) );
         add_action( 'init', array( $this, 'register_taxonomies' ) );
         add_action( 'init', array( $this, 'register_blocks' ) );
+        add_filter( 'allowed_block_types_all', array( $this, 'restrict_blocks' ), 10, 2 );
         add_action( 'wp_enqueue_scripts', array( $this, 'load_scripts' ) );
         add_action( 'enqueue_block_editor_assets', array( $this, 'load_editor_assets' ) );
 
@@ -19,6 +20,30 @@ class StarterSite extends Site {
         add_filter( 'timber/twig/environment/options', [ $this, 'update_twig_environment_options' ] );
 
         parent::__construct();
+    }
+
+    /**
+     * Limit the editor to large section blocks for a drag-and-drop experience.
+     *
+     * @param bool|array $allowed
+     * @param WP_Block_Editor_Context $editor_context
+     * @return array
+     */
+    public function restrict_blocks( $allowed, $editor_context ) {
+        $allowed_blocks = [
+            'theme/hero',
+            'theme/split-content',
+            'theme/feature-grid',
+            'theme/cta-banner',
+            'core/heading',
+            'core/paragraph',
+            'core/button',
+            'core/image',
+            'core/list',
+            'core/quote',
+        ];
+
+        return $allowed_blocks;
     }
 
     /**
@@ -114,9 +139,7 @@ class StarterSite extends Site {
     }
 
     public function theme_supports() {
-        // Add default posts and comments RSS feed links to head.
         add_theme_support( 'automatic-feed-links' );
-
         add_theme_support( 'title-tag' );
         add_theme_support( 'post-thumbnails' );
         add_theme_support( 'menus' );
@@ -172,7 +195,6 @@ class StarterSite extends Site {
      * @param Twig\Environment $twig get extension.
      */
     public function add_to_twig( $twig ) {
-        // $twig->addExtension( new Twig\Extension\StringLoaderExtension() );
         $twig->addFilter( new Twig\TwigFilter( 'myfoo', [ $this, 'myfoo' ] ) );
 
         return $twig;
