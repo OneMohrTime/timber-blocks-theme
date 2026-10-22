@@ -1,7 +1,25 @@
 {
   "name": "timber-blocks-theme",
+  "version": "1.0.0",
+  "author": {
+    "name": "Derek Mohr",
+    "email": "derek@onemohrti.me",
+    "url": "https://onemohrti.me/"
+  },
   "private": true,
+  "description": "Package manager for timber-blocks-theme",
   "type": "module",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:OneMohrTime/timber-starter-theme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/OneMohrTime/timber-starter-theme/issues"
+  },
+  "engines": {
+    "node": "26"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
