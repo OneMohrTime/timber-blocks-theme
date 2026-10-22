@@ -1,14 +1,11 @@
-<?php
+{% extends "base.twig" %}
 
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
-
-if ( class_exists( 'Timber\Timber' ) ) {
-    $context = Timber\Timber::context();
-    Timber\Timber::render( 'index.twig', $context );
-    return;
-}
-
-get_header();
-?><main class="l-main"><div class="l-wrap"><h1>Theme scaffold ready</h1></div></main><?php get_footer();
+{% block content %}
+	<h2>{{ foo }}</h2>
+	<p>{{ qux }}</p>
+	{% for post in posts %}
+		{% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
+	{% endfor %}
+	
+	{% include 'partial/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
+{% endblock %}
