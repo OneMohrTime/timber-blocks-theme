@@ -11,40 +11,58 @@ class StarterSite extends Site {
         add_action( 'init', array( $this, 'register_post_types' ) );
         add_action( 'init', array( $this, 'register_taxonomies' ) );
         add_action( 'init', array( $this, 'register_blocks' ) );
-        add_filter( 'allowed_block_types_all', array( $this, 'restrict_blocks' ), 10, 2 );
         add_action( 'wp_enqueue_scripts', array( $this, 'load_scripts' ) );
         add_action( 'enqueue_block_editor_assets', array( $this, 'load_editor_assets' ) );
+        add_action( 'init', array( $this, 'disable_comments' ) );
+        add_action( 'admin_menu', array( $this, 'remove_comment_menu' ) );
+        add_action( 'admin_init', array( $this, 'redirect_comment_pages' ) );
+        add_action( 'wp_before_admin_bar_render', array( $this, 'remove_comment_admin_bar_link' ) );
 
         add_filter( 'timber/context', array( $this, 'add_to_context' ) );
         add_filter( 'timber/twig', array( $this, 'add_to_twig' ) );
         add_filter( 'timber/twig/environment/options', [ $this, 'update_twig_environment_options' ] );
+        add_filter( 'allowed_block_types_all', array( $this, 'restrict_blocks' ), 10, 2 );
+        add_filter( 'comments_open', '__return_false', 20, 2 );
+        add_filter( 'pings_open', '__return_false', 20, 2 );
+        add_filter( 'comment_status_links', '__return_empty_array' );
+        add_filter( 'comments_array', '__return_empty_array', 10, 2 );
 
         parent::__construct();
     }
 
     /**
-     * Limit the editor to large section blocks for a drag-and-drop experience.
+     * Restrict the editor to a set of approved section and content blocks.
      *
      * @param bool|array $allowed
      * @param WP_Block_Editor_Context $editor_context
      * @return array
      */
     public function restrict_blocks( $allowed, $editor_context ) {
-        $allowed_blocks = [
+        return [
             'theme/hero',
             'theme/split-content',
             'theme/feature-grid',
             'theme/cta-banner',
-            'core/heading',
-            'core/paragraph',
-            'core/button',
-            'core/image',
-            'core/list',
-            'core/quote',
+            // 'core/heading',
+            // 'core/paragraph',
+            // 'core/button',
+            // 'core/image',
+            // 'core/list',
+            // 'core/quote',
         ];
-
-        return $allowed_blocks;
     }
+
+    // /**
+    //  * This is where you can register custom post types.
+    //  */
+    // public function register_post_types() {
+    // }
+
+    // /**
+    //  * This is where you can register custom taxonomies.
+    //  */
+    // public function register_taxonomies() {
+    // }
 
     /**
      * This is where you can register your custom block types.
@@ -74,21 +92,13 @@ class StarterSite extends Site {
 
         if ( file_exists( $theme_css ) ) {
             wp_enqueue_style(
-                'timber-blocks-theme-main',
-                get_template_directory_uri() . '/assets/css/app.css',
-                array(),
-                filemtime( $theme_css ),
-                'all'
+                'timber-blocks-theme-main', get_template_directory_uri() . '/assets/css/app.css', [], filemtime( $theme_css ), 'all'
             );
         }
 
         if ( file_exists( $theme_js ) ) {
             wp_enqueue_script(
-                'timber-blocks-theme-main',
-                get_template_directory_uri() . '/assets/js/app.js',
-                array(),
-                filemtime( $theme_js ),
-                true
+                'timber-blocks-theme-main', get_template_directory_uri() . '/assets/js/app.js', [], filemtime( $theme_js ), true
             );
         }
     }
@@ -101,26 +111,9 @@ class StarterSite extends Site {
 
         if ( file_exists( $editor_css ) ) {
             wp_enqueue_style(
-                'timber-blocks-theme-editor',
-                get_template_directory_uri() . '/assets/css/app.css',
-                array(),
-                filemtime( $editor_css )
+                'timber-blocks-theme-editor', get_template_directory_uri() . '/assets/css/app.css', [], filemtime( $editor_css )
             );
         }
-    }
-
-    /**
-     * This is where you can register custom post types.
-     */
-    public function register_post_types() {
-
-    }
-
-    /**
-     * This is where you can register custom taxonomies.
-     */
-    public function register_taxonomies() {
-
     }
 
     /**
@@ -187,6 +180,35 @@ class StarterSite extends Site {
     public function myfoo( $text ) {
         $text .= ' bar!';
         return $text;
+    }
+
+    /**
+     * Remove all commenting and discussion functionality from the theme.
+     */
+    public function disable_comments() {
+        remove_post_type_support( 'post', 'comments' );
+        remove_post_type_support( 'page', 'comments' );
+        remove_post_type_support( 'post', 'trackbacks' );
+        remove_post_type_support( 'page', 'trackbacks' );
+    }
+
+    public function remove_comment_menu() {
+        remove_menu_page( 'edit-comments.php' );
+    }
+
+    public function redirect_comment_pages() {
+        global $pagenow;
+
+        if ( $pagenow === 'edit-comments.php' ) {
+            wp_safe_redirect( admin_url() );
+            exit;
+        }
+    }
+
+    public function remove_comment_admin_bar_link() {
+        global $wp_admin_bar;
+
+        $wp_admin_bar->remove_menu( 'comments' );
     }
 
     /**
