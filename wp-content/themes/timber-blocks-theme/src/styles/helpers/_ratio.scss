@@ -28,11 +28,11 @@ $aspect-ratios: (
 //   <div class="o-ratio u-16:9">
 @each $ratio in $aspect-ratios {
     @each $antecedent, $consequent in $ratio {
-        @if (type-of($antecedent) != number) {
+        @if (meta.type-of($antecedent) != number) {
             @error "`#{$antecedent}` needs to be a number."
         }
 
-        @if (type-of($consequent) != number) {
+        @if (meta.type-of($consequent) != number) {
             @error "`#{$consequent}` needs to be a number."
         }
 
