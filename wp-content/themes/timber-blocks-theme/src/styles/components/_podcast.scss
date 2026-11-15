@@ -1,0 +1,113 @@
+/* ==========================================================================
+    Section: Podcasts
+========================================================================== */
+
+.o-section.is-podcasts {
+    @include padding();
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        display: flex;
+        align-items: flex-start;
+        gap: $gutter;
+    }
+}
+
+.c-podcast-overview {
+    flex: 2;
+
+    strong {
+        display: block;
+        margin-top: $base-spacing;
+        margin-bottom: $small-spacing;
+    }
+
+    .c-button-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5em;
+    }
+
+    .c-button:nth-child(1) {
+        background-color: #ff4e6b !important;
+        @include hocus {
+            background-color: $black--lighter !important;
+        }
+    }
+    .c-button:nth-child(2) {
+        background-color: #1db954 !important;
+        @include hocus {
+            background-color: $black--lighter !important;
+        }
+    }
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        position: sticky;
+        top: $gutter-xs;
+    }
+}
+
+.c-podcast-episodes {
+    display: flex;
+    flex-direction: column;
+    margin-top: $large-spacing;
+    gap: $base-spacing;
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        flex: 3;
+        gap: $small-spacing;
+        margin-top: 0;
+    }
+}
+
+.c-podcast {
+    position: relative;
+    padding: $gutter-sm;
+    border: 0;
+    border-radius: $border-radius;
+    background-color: $white;
+    color: $black--light;
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        flex: 1;
+        display: flex;
+        gap: $gutter-sm;
+    }
+}
+
+.c-podcast__link {
+    display: block;
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+}
+
+.c-podcast__title {
+    font-size: $font-h5;
+}
+
+.c-podcast__description {
+    font-size: $font-base-sm;
+    line-height: $heading-height;
+}
+
+.c-podcast__thumb {
+    margin-bottom: $small-spacing;
+    img {
+        max-width: rem(150px);
+    }
+}
+
+.c-podcast__meta {
+    margin-bottom: $small-spacing;
+    font-size: $font-meta;
+    color: $gray--darkest;
+}

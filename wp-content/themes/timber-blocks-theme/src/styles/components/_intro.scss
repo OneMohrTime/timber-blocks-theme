@@ -1,0 +1,51 @@
+/* ==========================================================================
+    Intro Content
+========================================================================== */
+
+.c-intro {
+    @include content-width();
+}
+
+/**
+ * === CASE STUDIES ===
+ */
+
+.c-intro.is-double {
+    display: flex;
+    flex-direction: column;
+
+    .u-wysiwyg + .u-wysiwyg {
+        margin-top: 1em;
+        padding-top: 1em;
+        border-top: 1px solid $gray--dark;
+    }
+
+    .is-demographics {
+        .u-subheadline {
+            margin-bottom: 1em;
+            font-size: $font-h6;
+            font-weight: $font-demibold;
+        }
+        p {
+            margin: 0;
+        }
+    }
+
+    // screen at or above 600px
+    @include media(">=small") {
+        flex-direction: row;
+        justify-content: space-between;
+
+        .u-wysiwyg {
+            flex: 0 1 50%;
+            max-width: calc(50% - #{$gutter-sm});
+            column-gap: $gutter;
+        }
+
+        .u-wysiwyg + .u-wysiwyg {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+    }
+}

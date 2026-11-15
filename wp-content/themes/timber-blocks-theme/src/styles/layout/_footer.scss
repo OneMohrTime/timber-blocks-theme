@@ -1,0 +1,13 @@
+/* ==========================================================================
+    Footer
+========================================================================== */
+
+.o-site__footer {
+    position: relative;
+    background-color: $black;
+    color: $white;
+
+    @include media(">=small") {}
+    @include media(">=medium") {}
+    @include media(">=large") {}
+}

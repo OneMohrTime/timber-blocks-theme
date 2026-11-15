@@ -1,0 +1,347 @@
+/* ==========================================================================
+    Banner
+========================================================================== */
+
+.c-banner {
+    position: relative;
+    margin-bottom: $gutter;
+    padding-left: $gutter;
+    padding-right: $gutter;
+    background-color: $white--dark;
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        margin-bottom: 0;
+    }
+
+    // Elements
+    .u-title {
+        margin-bottom: 0;
+    }
+    .c-button {
+        margin-top: 1em;
+    }
+}
+
+/**
+ * === DEFAULT ===
+ */
+.c-banner.is-default {
+    @include padding();
+    padding-top: $gutter;
+    padding-bottom: $gutter;
+    text-align: center;
+    background-color: $black;
+
+    .u-subheadline {
+        @include label();
+        margin-top: $small-spacing;
+        font-weight: $font-regular;
+        text-transform: none;
+        line-height: $heading-height;
+    }
+
+    // No media of any kind, just text
+    &.no-image {
+        padding-top: $gutter-xs;
+        padding-bottom: $gutter-xs;
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            padding-top: $gutter-sm;
+            padding-bottom: $gutter-xs;
+        }
+    }
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 375px;
+    }
+}
+
+/**
+ * === VIDEO ===
+ */
+.c-banner.is-video {
+    padding-left: 0;
+    padding-right: 0;
+
+    .u-eyebrow {
+        margin-top: $base-spacing;
+        margin-bottom: 0;
+        &::after {
+            display: none;
+        }
+    }
+}
+
+/**
+ * === SWIPER SLIDES ===
+ */
+.c-banner.is-slides {
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        display: flex;
+        align-items: center;
+        column-gap: $gutter;
+    }
+}
+
+/**
+ * === BUTTON GROUP ===
+ */
+
+.c-banner.is-buttons {
+    @include padding();
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    margin-bottom: 0;
+    padding-bottom: $gutter-sm;
+    color: $black--lighter;
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        flex-direction: row-reverse;
+        align-items: center;
+        column-gap: $gutter;
+        padding-top: $gutter;
+        padding-bottom: $gutter-lg;
+    }
+
+    // screen at or above 1200px
+    @include media(">=large") {
+        padding-top: $gutter-lg;
+    }
+
+    // Button Group
+    .c-banner__nav {
+        text-align: center;
+        .c-button {
+            margin-top: 0;
+        }
+        // screen at or above 900px
+        @include media(">=medium") {
+            text-align: left;
+        }
+    }
+    .c-banner__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1em;
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            justify-content: flex-start;
+            align-items: center;
+        }
+    }
+    .c-banner__listItem {
+        &.is-1 {
+            .c-button {
+                @include btn-style($pink, $white);
+            }
+        }
+        &.is-2 {
+            .c-button {
+                @include btn-style($black, $white);
+            }
+        }
+        &.is-3 {
+            .c-button {
+                @include btn-style($blue, $white, $black);
+            }
+        }
+    }
+    .u-label {
+        display: inline-block;
+        font-weight: $font-bold;
+        margin-bottom: 1em;
+        margin-top: $gutter;
+    }
+}
+
+/**
+ * === CONTENT ===
+ */
+
+.c-banner__text {
+    position: relative;
+    z-index: 1;
+
+    // Default Banner
+    .c-banner.is-default & {
+        color: $white;
+        text-shadow: 0 1px 35px color.adjust($black, $alpha: -0.5);
+    }
+
+    // Default Banner
+    .c-banner.is-video & {
+        @include padding();
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 375px;
+        text-align: center;
+        text-shadow: 0 1px 35px color.adjust($black, $alpha: -0.5);
+        background-color: color.adjust($black, $alpha: -0.6);
+        color: $white;
+        z-index: 2;
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            height: 550px;
+        }
+    }
+
+    // Slideshow Banner
+    .c-banner.is-slides & {
+        flex: 0 1 50%;
+        max-width: calc(50% - $gutter-sm);
+        padding-top: $gutter;
+    }
+
+    // Button Banner
+    .c-banner.is-buttons & {
+        margin-top: $gutter-sm;
+        // screen at or above 900px
+        @include media(">=medium") {
+            flex: 0 1 percentage(math.div(2, 3));
+            max-width: calc(percentage(math.div(2, 3)) - $gutter-sm);
+            margin-bottom: 0;
+        }
+    }
+
+    // Elements
+    .u-title,
+    .u-headline,
+    .u-subheadline {
+        display: block;
+    }
+}
+
+/**
+ * === IMAGE / VIDEO ===
+ */
+
+.c-banner__media {
+    position: relative;
+
+    // Default Banner
+    .c-banner.is-default & {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        opacity: 0.4;
+    }
+
+    // Video Banner
+    .c-banner.is-video & {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    // Slideshow Banner
+    .c-banner.is-slides & {
+        flex: 0 1 50%;
+        max-width: calc(50% - $gutter-sm);
+    }
+
+    // Buttons Banner
+    .c-banner.is-buttons & {
+        padding-top: $gutter-sm;
+
+        .c-media {
+            overflow: visible;
+        }
+
+        .c-media__image {
+            box-shadow: 5px 8px 10px 0 color.adjust($black, $alpha: -0.85);
+            transition: transform $speed $bezier-slide,
+                        max-width $speed $bezier-slide,
+                        box-shadow $speed $bezier-slide;
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            flex: 0 1 50%;
+            max-width: calc(50% - $gutter-sm);
+            padding-top: 0;
+
+            .c-media__image {
+                max-width: 350px;
+                margin-left: auto;
+                margin-right: auto;
+                transform: rotate(-4deg);
+                // straighten on hover
+                &:hover {
+                    // max-width: 400px;
+                    transform: rotate(0);
+                    box-shadow: 5px 8px 10px 0 color.adjust($black, $alpha: -0.6);
+                }
+            }
+        }
+    }
+
+    .c-banner__video {
+        position: relative;
+        top: 50%;
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        transform: translateY(-50%);
+        object-fit: cover;
+    }
+
+    .c-media {
+        display: block;
+        width: 100%;
+        height: 100%;
+        .c-media__image {
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+
+/**
+ * === TESTIMONIAL CARDS ===
+ */
+
+.c-banner__testimonials {
+    @include padding();
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: $gutter-sm;
+    padding-bottom: $gutter-sm;
+    background-color: color.adjust($black, $alpha: -0.6);
+    z-index: 10;
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        position: absolute;
+        bottom: 0;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: $gutter-sm;
+        padding-bottom: 0;
+        background-color: transparent;
+    }
+}

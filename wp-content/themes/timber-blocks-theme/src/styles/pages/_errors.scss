@@ -1,0 +1,18 @@
+/* ==========================================================================
+    Error Pages
+========================================================================== */
+
+.c-404 {
+    @include padding();
+    padding-top: $gutter;
+    padding-bottom: $gutter;
+    text-align: center;
+    background-color: $white--dark;
+    color: $black;
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        padding-top: $gutter-lg;
+        padding-bottom: $gutter-lg;
+    }
+}

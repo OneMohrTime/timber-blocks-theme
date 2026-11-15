@@ -1,0 +1,63 @@
+/* ==========================================================================
+    Section: Text Content
+========================================================================== */
+
+.o-section.is-content {
+    @include padding();
+
+    .c-content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .c-button {
+        margin-top: $base-spacing;
+    }
+}
+
+.c-content {
+    @include content-width();
+    position: relative;
+    padding-left: $gutter;
+    padding-right: $gutter;
+
+    // h1, h2, h3, h4, h5, h6 {
+    //     display: inline-block;
+    //     margin-left: auto;
+    //     margin-right: auto;
+    // }
+    // p, ul, ol, dl {
+    //     margin-left: auto;
+    //     margin-right: auto;
+    // }
+}
+
+.c-content__list {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
+
+.c-content__listItem {
+    border-top: 1px solid $gray--lightest;
+    padding: $gutter-sm;
+
+    .u-heading {
+        font-family: $font-body;
+        font-size: $font-base-lg;
+        font-weight: $font-bold;
+    }
+}
+
+.c-content__disclaimer {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+    .u-wysiwyg {
+        margin-top: $gutter;
+        font-size: $font-base-sm;
+        line-height: $heading-height;
+    }
+}

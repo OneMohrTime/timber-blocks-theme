@@ -1,0 +1,292 @@
+/* ==========================================================================
+    Primary Navigation
+========================================================================== */
+
+.c-navigation {
+    @include padding();
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: $gutter-sm;
+    padding-bottom: $gutter-sm;
+    background-color: $white;
+    color: $black;
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        flex-wrap: nowrap;
+        overflow: visible;
+    }
+
+    .c-submenu {
+        display: flex;
+        flex-direction: column;
+        row-gap: $gutter-xs;
+        padding: 0 $gutter-xs;
+        height: auto;
+        max-height: 0;
+        margin-top: 0;
+        overflow: hidden;
+        transition: max-height $speed $bezier-slide,
+                    margin $speed $bezier-slide,
+                    padding $speed $bezier-slide,
+                    opacity $speed $bezier-slide,
+                    visibility 0s linear $speed;
+        opacity: 0;
+        background-color: $white--dark;
+        color: $black;
+        visibility: hidden;
+        pointer-events: none;
+        z-index: 100;
+
+        &.is-visible {
+            max-height: 100vh;
+            margin-top: $gutter-xs;
+            padding: $gutter-xs;
+            transition-delay: 0s;
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        &.is-hidden {
+            max-height: 0;
+            margin-top: 0;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            row-gap: 1em;
+            width: rem(250px);
+            margin-top: 0;
+            padding: 0 $gutter-sm;
+            background-color: $black;
+            background-image: linear-gradient(to bottom, $white $gutter-sm, $black $gutter-sm);
+            color: $white;
+            z-index: 1000;
+
+            &.is-visible {
+                margin-top: 0;
+                padding: $gutter-sm;
+                padding-top: $gutter-sm + $gutter-sm;
+            }
+        }
+    }
+
+    .c-submenu__item {
+        font-weight: $font-regular;
+
+        .u-link {
+            &.is-external {
+                display: flex;
+                display: inline-flex;
+                align-items: baseline;
+                column-gap: rem(6px);
+            }
+        }
+
+        // Current page is active
+        &.is-current {
+            & > .u-link {
+                color: $blue;
+            }
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            font-weight: $font-bold;
+            font-weight: $font-demibold;
+            line-height: $heading-height;
+        }
+    }
+}
+
+/**
+ * === MENU ===
+ */
+
+.c-navigation__menu {
+    flex: 1 1 100%;
+    height: auto;
+    max-height: 100%;
+    padding-top: $gutter-sm;
+    transition: opacity $speed $bezier-slide,
+                visibility 0s linear 0s;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    &.is-hidden {
+        height: 0;
+        max-height: 0;
+        transition: opacity $speed $bezier-slide,
+                    visibility 0s linear $speed;
+        opacity: 0;
+        visibility: hidden;
+        padding-top: 0;
+        pointer-events: none;
+    }
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        flex: 0 1 auto;
+        flex-direction: row;
+        padding-top: 0;
+        background-color: transparent;
+        color: inherit;
+
+        &.is-hidden {
+            height: auto;
+            max-height: 100%;
+            transition: opacity $speed $bezier-slide,
+                        visibility 0s linear 0s;
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .c-navigation__menu,
+    .c-navigation__menu.is-hidden {
+        transition-duration: 0s;
+        transition-delay: 0s;
+    }
+}
+
+.c-navigation__menu-item {
+    font-weight: $font-bold;
+
+    &.has-dropdown {
+        position: relative;
+    }
+
+    // Current page is active
+    &.is-current {
+        & > .u-link {
+            color: $pink;
+        }
+    }
+
+    // Adjacent menu items
+    & + & {
+        margin-top: $gutter-xs;
+    }
+
+    // Caret/Arrow
+    .u-toggle {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%) rotate(-90deg);
+        transition: color $speed $bezier-slide;
+    }
+
+    // Nav link
+    .u-link {
+        transition: color $speed $bezier-slide;
+        color: inherit;
+
+        &.is-external {
+            display: flex;
+            display: inline-flex;
+            align-items: baseline;
+            column-gap: rem(6px);
+        }
+
+        &.is-active {
+            & + .u-toggle {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        @include hocus {
+            color: $pink;
+            & + .u-toggle {
+                color: $pink;
+            }
+        }
+    }
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        font-size: $font-base-sm;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+
+        & + & {
+            margin-top: 0;
+        }
+
+        // Dropdown caret icon
+        .u-toggle {
+            $caret: rem(11px);
+            position: absolute;
+            top: 50%;
+            right: calc(#{-$caret} - 4px);
+            max-width: $caret;
+            max-height: $caret;
+            transform: translateY(-50%);
+            transition: color $speed $bezier-slide;
+            color: $blue;
+
+            .c-media__svg {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .u-link {
+            &.is-active,
+            &:hover,
+            &:focus,
+            &:active {
+                & + .u-toggle {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        }
+    }
+}
+
+/**
+ * === LOGO ===
+ */
+
+.c-navigation__logo {
+    position: relative;
+    display: block;
+    margin-right: auto;
+
+    .c-media__image {
+        width: auto;
+        max-height: 44px;
+        max-width: 220px;
+    }
+}
+
+/**
+ * === TOGGLE ===
+ */
+
+.c-navigation__toggle {
+    position: relative;
+    flex: 0 1 30px;
+    width: auto;
+    height: 30px;
+    max-width: 30px;
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        display: none;
+    }
+}

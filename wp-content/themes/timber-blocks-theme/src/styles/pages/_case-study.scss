@@ -1,0 +1,61 @@
+/* ==========================================================================
+    Case Studies
+========================================================================== */
+
+.t-case-study {
+
+    .c-banner {
+        margin-bottom: 0;
+    }
+
+}
+
+.t-page.is-case-studies {
+    .c-banner {
+        margin-bottom: 0;
+    }
+}
+
+/**
+ * === PAGE SECTION ===
+ */
+
+.o-section.is-case-studies {
+    padding-bottom: $gutter;
+
+    // Space it from page builder if it exists
+    .o-page__sections + & {
+        padding-top: $gutter;
+    }
+
+    .c-grid {
+        justify-content: flex-start;
+    }
+
+    .c-case-study {
+        transition: background-color $speed-fast $bezier-slide,
+                    box-shadow $speed-fast $bezier-slide;
+
+        &:hover {
+            background-color: $white--dark;
+            box-shadow: 0 0 0 0.5rem $white--dark;
+        }
+
+        &:focus {
+            outline: $focus-outline;
+            outline-offset: $focus-offset;
+        }
+    }
+
+    .u-subheadline {
+        margin-top: $small-spacing;
+        font-size: $font-h5;
+    }
+
+    .u-wysiwyg {
+        line-height: $heading-height;
+        p {
+            font-size: $font-base-sm;
+        }
+    }
+}

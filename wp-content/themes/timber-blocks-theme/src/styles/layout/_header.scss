@@ -1,0 +1,17 @@
+/* ==========================================================================
+    Header
+========================================================================== */
+
+.o-site__header {
+
+    &.is-active {
+        position: relative;
+        z-index: 500;
+    }
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        position: relative;
+        z-index: 500;
+    }
+}

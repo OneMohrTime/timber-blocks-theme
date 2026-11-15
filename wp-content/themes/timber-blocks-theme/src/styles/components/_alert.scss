@@ -1,0 +1,113 @@
+/* ==========================================================================
+    Alert
+========================================================================== */
+
+.c-alert {
+    position: relative;
+    display: none;
+    background-color: $black;
+    color: $white;
+
+    &.is-active {
+        display: block;
+        transition: transform $speed, opacity $speed;
+    }
+
+    &.not-active {
+        display: none;
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    @include media(">=small") {
+        &.is-active {
+            display: flex;
+            align-items: center;
+            column-gap: 0.75em;
+        }
+    }
+}
+
+.c-alert__title {
+    // screen below 599px
+    @include media("<small") {
+        display: block;
+    }
+}
+
+.c-alert__text {
+    $dot-size: 11px;
+    position: relative;
+    margin-bottom: 0;
+    line-height: $heading-height;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: calc(50% - math.div($dot-size, 2));
+        left: -$dot-size - math.div($dot-size, 2);
+        display: block;
+        width: $dot-size;
+        height: $dot-size;
+        background-color: $yellow;
+        border-radius: $dot-size;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: calc(50% - math.div($dot-size, 2));
+        left: -$dot-size - math.div($dot-size, 2);
+        display: block;
+        width: $dot-size;
+        height: $dot-size;
+        border-radius: 50%;
+        background-color: $yellow;
+        opacity: 0;
+        animation: radar-blip 1.5s infinite ease-out;
+    }
+}
+
+.c-alert__link {
+    @include padding();
+    display: block;
+    width: 100%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    transition: all $speed;
+
+    // hover, focus
+    @include hocus {
+        background-color: $purple;
+        color: $white;
+    }
+
+    &:active {
+        background-color: $pink;
+        color: $white;
+    }
+}
+
+.c-alert__close {
+    position: absolute;
+    top: 50%;
+    right: $gutter;
+    width: 10px;
+    height: 10px;
+    background-color: $white;
+}
+
+@keyframes radar-blip {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    70% {
+        transform: scale(2);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}

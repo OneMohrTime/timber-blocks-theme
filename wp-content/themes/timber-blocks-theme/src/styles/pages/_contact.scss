@@ -1,0 +1,30 @@
+/* ==========================================================================
+    Contact
+========================================================================== */
+
+.t-page.is-contact {
+
+    .o-page {
+        padding-bottom: $gutter;
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            padding-bottom: $gutter-lg;
+        }
+    }
+
+    .c-banner {
+        margin-bottom: 0
+    }
+
+    .c-intro,
+    .c-form {
+        @include padding();
+        padding-top: $gutter;
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            padding-top: $gutter-lg;
+        }
+    }
+}

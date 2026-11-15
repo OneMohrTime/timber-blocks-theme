@@ -1,0 +1,45 @@
+/* ==========================================================================
+    Utility Navigation
+========================================================================== */
+
+.c-utility {
+    @include padding();
+    position: relative;
+    display: block;
+    width: 100%;
+    padding-top: $gutter-xs;
+    padding-bottom: $gutter-xs;
+    background-color: $black;
+    color: $white;
+}
+
+/**
+ * === MENU ===
+ */
+
+.c-utility__menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: $gutter-xs;
+
+    .u-link {
+        transition: color $speed $bezier-slide;
+        font-size: $font-base-sm;
+        font-weight: $font-bold;
+
+        @include hocus {
+            color: $pink;
+        }
+
+        &:focus {
+            outline: $focus-outline;
+            outline-offset: $focus-offset;
+        }
+    }
+
+    // screen at or above 600px
+    @include media(">=small") {
+        justify-content: flex-end;
+    }
+}

@@ -1,0 +1,536 @@
+/* ==========================================================================
+    Helpers
+========================================================================== */
+
+/**
+ * === COLOR SCHEMES ===
+ */
+// --bg-color: var(--color-white);
+// --text-color: var(--color-black);
+
+.u-color-scheme-light {
+    background-color: var(--color-light);
+    color: var(--color-black);
+    & + & {
+        padding-top: 0;
+    }
+    &.is-topics .c-grid {
+        .c-grid__item .u-link {
+            border-color: $white--darkest;
+            color: $black--light;
+            @include hocus {
+                border-color: $black--light;
+            }
+        }
+    }
+    &.is-resources .c-grid__item {
+        background-color: color.mix(#000, $white, $weight: 85%);
+        color: color.mix(#fff, $black--light, $weight: 75%);
+        &:hover {
+            background-color: var(--color-black);
+            color: var(--color-white);
+        }
+    }
+    .c-quote p:before,
+    .c-quote p:after {
+        color: #bababa;
+    }
+    .c-slideshow__slides .swiper-pagination-bullet {
+        box-shadow: inset 0 0 0 2px var(--color-dark);
+    }
+    .c-slideshow__slides .swiper-pagination-bullet-active {
+        background-color: var(--color-dark) !important;
+    }
+    .c-button.is-primary,
+    .c-button.is-secondary {
+        @include btn-color($pink, $white, $black--lighter);
+        &:nth-child(2) {
+            @include btn-color($blue, $white, $black--lighter);
+        }
+        &:nth-child(3) {
+            @include btn-color($black, $white, $black--lighter);
+        }
+    }
+    .u-link::after {
+        background-color: var(--color-dark) !important;
+    }
+}
+
+.u-color-scheme-white {
+    background-color: var(--color-white);
+    color: var(--color-black);
+    & + & {
+        padding-top: 0;
+    }
+    &.is-topics .c-grid {
+        .c-grid__item .u-link {
+            border-color: $white--dark;
+            color: $black--light;
+            @include hocus {
+                border-color: $black--light;
+            }
+        }
+    }
+    &.is-resources .c-grid__item {
+        background-color: var(--color-light);
+        color: var(--color-black);
+        &:hover {
+            background-color: var(--color-dark);
+            color: var(--color-white);
+        }
+    }
+    .c-quote p:before,
+    .c-quote p:after {
+        color: #bababa;
+    }
+    .c-slideshow__slides .swiper-pagination-bullet {
+        box-shadow: inset 0 0 0 2px var(--color-dark);
+    }
+    .c-slideshow__slides .swiper-pagination-bullet-active {
+        background-color: var(--color-dark) !important;
+    }
+    .c-button.is-primary,
+    .c-button.is-secondary {
+        @include btn-color($pink, $white, $black--lighter);
+        &:nth-child(2) {
+            @include btn-color($blue, $white, $black--lighter);
+        }
+        &:nth-child(3) {
+            @include btn-color($black, $white, $black--lighter);
+        }
+    }
+    .u-link::after {
+        background-color: var(--color-dark) !important;
+    }
+}
+
+.u-color-scheme-black {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    & + & {
+        padding-top: 0;
+    }
+    &.is-topics .c-grid {
+        .c-grid__item .u-link {
+            border-color: $black--lightest;
+            color: $white--dark;
+            @include hocus {
+                border-color: $white--dark;
+            }
+        }
+    }
+    &.is-resources .c-grid__item {
+        background-color: color.mix(#000, $white, $weight: 85%);
+        color: color.mix(#000, $white, $weight: 15%);
+        &:hover {
+            background-color: var(--color-light);
+            color: var(--color-black);
+        }
+    }
+    .c-quote p:before,
+    .c-quote p:after {
+        color: #8c8c8c;
+    }
+    .c-slideshow__slides .swiper-pagination-bullet {
+        box-shadow: inset 0 0 0 2px var(--color-white);
+    }
+    .c-slideshow__slides .swiper-pagination-bullet-active {
+        background-color: var(--color-white) !important;
+    }
+    .c-button.is-primary,
+    .c-button.is-secondary {
+        @include btn-color($pink, $white, $black--lighter);
+        &:nth-child(2) {
+            @include btn-color($blue, $white, $black--lighter);
+        }
+        &:nth-child(3) {
+            @include btn-color($white--dark, $black, $white--darkest);
+        }
+    }
+    .u-link::after {
+        background-color: var(--color-white) !important;
+    }
+}
+
+.u-color-scheme-dark {
+    background-color: $black--light;
+    background-color: color.mix(#000, $white, $weight: 80%);
+    color: var(--color-white);
+    & + & {
+        padding-top: 0;
+    }
+    &.is-topics .c-grid {
+        .c-grid__item .u-link {
+            border-color: $black;
+            color: $white;
+            @include hocus {
+                border-color: $white--dark;
+            }
+        }
+    }
+    &.is-resources .c-grid__item {
+        background-color: color.mix(#000, $white, $weight: 85%);
+        color: color.mix(#000, $white, $weight: 15%);
+        &:hover {
+            background-color: var(--color-light);
+            color: var(--color-black);
+        }
+    }
+    .c-quote p:before,
+    .c-quote p:after {
+        color: #8c8c8c;
+    }
+    .c-slideshow__slides .swiper-pagination-bullet {
+        box-shadow: inset 0 0 0 2px var(--color-white);
+    }
+    .c-slideshow__slides .swiper-pagination-bullet-active {
+        background-color: var(--color-white) !important;
+    }
+    .c-button.is-primary,
+    .c-button.is-secondary {
+        @include btn-color($pink, $white, $black--lighter);
+        &:nth-child(2) {
+            @include btn-color($blue, $white, $black--lighter);
+        }
+        &:nth-child(3) {
+            @include btn-color($white--dark, $black, $white--darkest);
+        }
+    }
+    .u-link::after {
+        background-color: var(--color-white) !important;
+    }
+}
+
+.u-color-scheme-blue {
+    background-color: var(--color-blue);
+    color: var(--color-black);
+    & + & {
+        padding-top: 0;
+    }
+    &.is-topics .c-grid {
+        .c-grid__item .u-link {
+            border-color: color.mix(#000, $blue, $weight: 25%);
+            color: color.mix(#000, $blue, $weight: 75%);
+            @include hocus {
+                border-color: color.mix(#000, $blue, $weight: 75%);
+            }
+        }
+    }
+    &.is-resources .c-grid__item {
+        background-color: var(--color-light);
+        color: var(--color-black);
+        &:hover {
+            background-color: color.mix(#000, $blue, $weight: 25%);
+            color: var(--color-white);
+        }
+    }
+    .c-media__frames::after {
+        background-color: var(--color-purple);
+    }
+    .c-quote p:before,
+    .c-quote p:after {
+        color: #529BC0;
+    }
+    .c-slideshow__slides .swiper-pagination-bullet {
+        box-shadow: inset 0 0 0 2px var(--color-purple);
+    }
+    .c-slideshow__slides .swiper-pagination-bullet-active {
+        background-color: var(--color-purple) !important;
+    }
+    .c-button.is-primary,
+    .c-button.is-secondary {
+        @include btn-color($purple, $white, $black--lighter);
+        &:nth-child(2) {
+            @include btn-color($pink, $white, $black--lighter);
+        }
+        &:nth-child(3) {
+            @include btn-color($black, $white, $black--lighter);
+        }
+    }
+    .u-link::after {
+        background-color: var(--color-purple) !important;
+    }
+}
+
+.u-color-scheme-green {
+    background-color: var(--color-green);
+    color: var(--color-black);
+    & + & {
+        padding-top: 0;
+    }
+    &.is-topics .c-grid {
+        .c-grid__item .u-link {
+            border-color: #adcb36;
+            color: color.mix(#000, $green, $weight: 75%);
+            @include hocus {
+                border-color: color.mix(#000, $green, $weight: 75%);
+            }
+        }
+    }
+    &.is-resources .c-grid__item {
+        background-color: $black--light;
+        color: var(--color-white);
+        &:hover {
+            background-color: var(--color-light);
+            color: var(--color-black);
+        }
+    }
+    .c-quote p:before,
+    .c-quote p:after {
+        color: #67902F;
+    }
+    .c-slideshow__slides .swiper-pagination-bullet {
+        box-shadow: inset 0 0 0 2px var(--color-black);
+    }
+    .c-slideshow__slides .swiper-pagination-bullet-active {
+        background-color: var(--color-black) !important;
+    }
+    .c-button.is-primary,
+    .c-button.is-secondary {
+        @include btn-color($purple, $white, $black--lighter);
+        &:nth-child(2) {
+            @include btn-color($pink, $white, $black--lighter);
+        }
+        &:nth-child(3) {
+            @include btn-color($black, $white, $black--lighter);
+        }
+    }
+    .u-link::after {
+        background-color: var(--color-black) !important;
+    }
+}
+
+.u-color-scheme-red {
+    background-color: var(--color-red);
+    color: var(--color-white);
+    & + & {
+        padding-top: 0;
+    }
+    &.is-topics .c-grid {
+        .c-grid__item .u-link {
+            border-color: #c73869;
+            color: $white--dark;
+            @include hocus {
+                border-color: $white--dark;
+            }
+        }
+    }
+    &.is-resources .c-grid__item {
+        background-color: var(--color-light);
+        color: $black--light;
+        &:hover {
+            background-color: var(--color-white);
+            color: var(--color-black);
+        }
+    }
+    .c-quote p:before,
+    .c-quote p:after {
+        color: #F396B2;
+    }
+    .c-slideshow__slides .swiper-pagination-bullet {
+        box-shadow: inset 0 0 0 2px var(--color-white);
+    }
+    .c-slideshow__slides .swiper-pagination-bullet-active {
+        background-color: var(--color-white) !important;
+    }
+    .c-button.is-primary,
+    .c-button.is-secondary {
+        @include btn-color($purple, $white, $black--lighter);
+        &:nth-child(2) {
+            @include btn-color($white, $black, $white--darkest);
+        }
+        &:nth-child(3) {
+            @include btn-color($black, $white, $black--lighter);
+        }
+    }
+    .u-link::after {
+        background-color: var(--color-white) !important;
+    }
+}
+
+.u-color-scheme-yellow {
+    background-color: var(--color-yellow);
+    color: var(--color-black);
+    & + & {
+        padding-top: 0;
+    }
+    &.is-topics .c-grid {
+        .c-grid__item .u-link {
+            border-color: #f2bd41;
+            color: color.mix(#000, $yellow, $weight: 85%);
+            @include hocus {
+                border-color: color.mix(#000, $yellow, $weight: 85%);
+            }
+        }
+    }
+    &.is-resources .c-grid__item {
+        background-color: color.mix(#000, $yellow, $weight: 85%);
+        color: color.mix(#fff, $yellow, $weight: 50%);
+        &:hover {
+            background-color: var(--color-black);
+            color: var(--color-white);
+        }
+    }
+    .c-quote p:before,
+    .c-quote p:after {
+        color: #CAAA2F;
+    }
+    .c-slideshow__slides .swiper-pagination-bullet {
+        box-shadow: inset 0 0 0 2px var(--color-black);
+    }
+    .c-slideshow__slides .swiper-pagination-bullet-active {
+        background-color: var(--color-black) !important;
+    }
+    .c-button.is-primary,
+    .c-button.is-secondary {
+        @include btn-color($orange, $white, $black--lighter);
+        &:nth-child(2) {
+            @include btn-color($white, $black, $white--darkest);
+        }
+        &:nth-child(3) {
+            @include btn-color($black, $white, $black--lighter);
+        }
+    }
+    .u-link::after {
+        background-color: var(--color-black) !important;
+    }
+}
+
+.u-color-scheme-orange {
+    background-color: var(--color-orange);
+    color: var(--color-white);
+    & + & {
+        padding-top: 0;
+    }
+    &.is-topics .c-grid {
+        .c-grid__item .u-link {
+            border-color: #e37f32;
+            color: $white--darker;
+            @include hocus {
+                border-color: $white--darker;
+            }
+        }
+    }
+    &.is-resources .c-grid__item {
+        background-color: var(--color-light);
+        color: var(--color-orange);
+        &:hover {
+            background-color: var(--color-black);
+            color: var(--color-light);
+        }
+    }
+    .c-quote p:before,
+    .c-quote p:after {
+        color: #F07760;
+    }
+    .c-slideshow__slides .swiper-pagination-bullet {
+        box-shadow: inset 0 0 0 2px var(--color-white);
+    }
+    .c-slideshow__slides .swiper-pagination-bullet-active {
+        background-color: var(--color-white) !important;
+    }
+    .c-button.is-primary,
+    .c-button.is-secondary {
+        @include btn-color($yellow, $black, $white--darkest);
+        &:nth-child(2) {
+            @include btn-color($white, $black, $white--darkest);
+        }
+        &:nth-child(3) {
+            @include btn-color($black, $white, $black--lighter);
+        }
+    }
+    .u-link::after {
+        background-color: var(--color-white) !important;
+    }
+}
+
+.u-color-scheme-purple {
+    background-color: var(--color-purple);
+    color: var(--color-white);
+    & + & {
+        padding-top: 0;
+    }
+    &.is-topics .c-grid {
+        .c-grid__item .u-link {
+            border-color: #50305d;
+            color: $white--dark;
+            @include hocus {
+                border-color: $white--dark;
+            }
+        }
+    }
+    &.is-resources .c-grid__item {
+        background-color: var(--color-black);
+        color: var(--color-light);
+        &:hover {
+            background-color: var(--color-light);
+            color: var(--color-black);
+        }
+    }
+    .c-quote p:before,
+    .c-quote p:after {
+        color: #7F5191;
+    }
+    .c-slideshow__slides .swiper-pagination-bullet {
+        box-shadow: inset 0 0 0 2px var(--color-white);
+    }
+    .c-slideshow__slides .swiper-pagination-bullet-active {
+        background-color: var(--color-white) !important;
+    }
+    .c-button.is-primary,
+    .c-button.is-secondary {
+        @include btn-color($blue, $black, $white--darkest);
+        &:nth-child(2) {
+            @include btn-color($pink, $white, $black--lighter);
+        }
+        &:nth-child(3) {
+            @include btn-color($white, $black, $white--darkest);
+        }
+    }
+    .u-link::after {
+        background-color: var(--color-white) !important;
+    }
+}
+
+/**
+ * === SPACING / PADDING ===
+ */
+
+.u-spacing-sm {
+    padding-top: $gutter-sm;
+    padding-bottom: $gutter-sm;
+}
+.u-spacing-md {
+    padding-top: $gutter-md;
+    padding-bottom: $gutter-md;
+}
+.u-spacing-lg {
+    padding-top: $gutter-lg;
+    padding-bottom: $gutter-lg;
+}
+.u-spacing-none {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+// Devices that require no motion or animations
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+// Completely remove from the flow but leave available to screen readers.
+.u-screen-reader-text {
+    @include accessibly-hidden;
+}
+
+// Extends the `.screen-reader-text` class to allow the element
+// to be focusable when navigated to via the keyboard.
+//
+// @link https://www.drupal.org/node/897638
+// @todo Define styles when focused.
+.u-screen-reader-text.is-focusable {
+    @include accessibly-focusable;
+}

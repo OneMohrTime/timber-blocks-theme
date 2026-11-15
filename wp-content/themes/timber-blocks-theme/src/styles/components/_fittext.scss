@@ -1,0 +1,15 @@
+/* ==========================================================================
+    Section: Large Title
+========================================================================== */
+
+.c-fittext {
+    @include padding();
+    position: relative;
+}
+
+.c-fittext__headline {
+    display: block;
+    margin: 0;
+    transition: font-size $speed $bezier-slide;
+    white-space: nowrap;
+}

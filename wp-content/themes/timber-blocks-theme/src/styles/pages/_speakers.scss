@@ -1,0 +1,175 @@
+/* ==========================================================================
+    Speaker Opportunities
+========================================================================== */
+
+.t-page.is-speaker-opportunities {
+
+    .c-banner {
+        margin-bottom: 0
+    }
+
+    .c-intro {
+        @include padding();
+        padding-top: $gutter;
+        padding-bottom: $gutter;
+        text-align: center;
+
+        h2, h3, h4 {
+            margin-bottom: $small-spacing;
+            font-size: $font-h5;
+        }
+
+        p {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            h2, h3, h4 {
+                font-size: $font-h3;
+            }
+        }
+    }
+
+    .c-content.is-action {
+        @include padding();
+        padding-top: $gutter;
+        padding-bottom: $gutter;
+        background-color: $black;
+        background-size: cover;
+        color: $white;
+
+        .c-textMedia {
+            max-width: 100% !important;
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            padding-top: $gutter-lg;
+            padding-bottom: $gutter-lg;
+
+            .c-textMedia {
+                align-items: flex-start;
+            }
+            .c-textMedia__text {
+                flex: 1 1 60%;
+                max-width: 60% !important;
+                padding-right: $gutter;
+            }
+            .c-textMedia__list {
+                flex: 1 1 40%;
+                max-width: 40% !important;
+            }
+        }
+    }
+
+    .c-content.is-sharing {
+        @include padding();
+        padding-top: $gutter;
+        padding-bottom: $gutter;
+        background-color: $white--dark;
+        background-image: url("https://colossianforum.org/wp-content/uploads/header-texture.png");
+        background-blend-mode: multiply;
+        background-repeat: repeat;
+
+        .c-grid__item {
+            text-align: left;
+            h3 {
+                font-size: $font-h5;
+            }
+        }
+
+        .u-subheadline {
+            max-width: 960px !important;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: $small-spacing;
+            text-align: center
+        }
+
+        // screen at or above 600px
+        @include media(">=small") {
+            .c-grid {
+                align-items: flex-start;
+                gap: $gutter;
+            }
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            padding-top: $gutter-lg;
+            padding-bottom: $gutter-lg;
+
+            .u-subheadline {
+                margin-bottom: $gutter;
+            }
+
+            .c-grid {
+                max-width: 100% !important;
+            }
+            .c-grid__item {
+                flex-basis: 50%;
+                max-width: calc(50% - $gutter-sm);
+            }
+        }
+
+        // screen at or above 1200px
+        @include media(">=large") {
+            .c-grid {
+                gap: $gutter-lg;
+            }
+            .c-grid__item {
+                max-width: calc(50% - $gutter);
+            }
+        }
+    }
+
+    .c-form {
+        @include padding();
+        padding-top: $gutter;
+        padding-bottom: $gutter;
+
+        .c-form__headline,
+        .c-form__description {
+            text-align: center;
+        }
+
+        .c-form__description {
+            margin-bottom: $line-height;
+        }
+
+        ._form {
+            margin: 0;
+        }
+
+        ._form_element._full_width {
+            margin-bottom: $base-spacing;
+        }
+
+        // screen at or above 600px
+        @include media(">=small") {
+            ._form_element._full_width {
+                flex: 0 1 50%;
+                max-width: calc(50% - 1em);
+                margin-bottom: 0;
+
+                &:has(textarea),
+                &:has(._checkbox-radio) {
+                    flex: 1 1 100% !important;
+                    max-width: 100% !important;
+                }
+            }
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            padding-top: $gutter-lg;
+            padding-bottom: $gutter-lg;
+
+            .c-form__description {
+                margin-bottom: $gutter;
+            }
+        }
+    }
+}

@@ -1,0 +1,150 @@
+/* ==========================================================================
+    Buttons
+========================================================================== */
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+    position: relative;
+    display: inline-block;
+    background-color: transparent;
+    background-image: none;
+    border-radius: 0;
+    color: inherit;
+    font-size: 100%; // Corrects font size not being inherited in all browsers
+    margin: 0;
+    vertical-align: baseline; // Improves appearance and consistency in all browsers
+    white-space: nowrap;
+    overflow: hidden;
+    appearance: none;
+
+    &:focus {
+        outline: $focus-outline;
+        outline-offset: $focus-offset;
+    }
+}
+
+button:focus,
+[type='button']:focus,
+[type='reset']:focus,
+[type='submit']:focus {
+    outline-color: color.adjust($blue, $alpha: -0.4);
+}
+
+button:hover,
+[type='button']:hover,
+[type='reset']:hover,
+[type='submit']:hover {
+    background-color: transparent;
+    color: inherit;
+}
+
+/**
+* === BUTTON MIXIN ===
+*/
+
+@mixin btn-style($bg: $black, $text: $white, $hover: $blue) {
+    padding: rem(15px) rem(25px);
+    font-family: $font-body;
+    font-size: $font-base-sm;
+    font-weight: $font-heavy;
+    line-height: $heading-height;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: 0;
+    border-radius: rem(50px);
+    background-color: $bg;
+    color: $text;
+    cursor: pointer;
+
+    @include media(">=small") {
+        transition: background $speed $bezier-slide,
+                    color $speed $bezier-slide;
+    }
+
+    // hover, focus
+    @include hocus {
+        background-color: $hover;
+        color: $text;
+    }
+
+    &:active {
+        background-color: $gray--darkest !important;
+        color: $white--darkest !important;
+    }
+
+    // disabled buttons
+    &:disabled {
+        opacity: 1;
+        border-color: $gray;
+        background-color: transparent;
+        color: $gray;
+        cursor: not-allowed !important;
+        // hover, focus
+        @include hocus {
+            background-color: $white--dark;
+            color: $gray;
+            &::after {
+                display: none;
+            }
+        }
+    }
+}
+
+/**
+* === Button Class ===
+*/
+.c-button {
+    @include btn-style();
+
+    &.is-primary {
+        background-color: $pink;
+        color: $white;
+    }
+
+    &:has(.c-button__icon) {
+        display: flex;
+        display: inline-flex;
+        align-items: center;
+        column-gap: $small-spacing;
+    }
+
+    .c-media__svg {
+        position: relative;
+        transition: $speed $bezier-back;
+    }
+}
+
+.c-button.is-primary {
+    @include btn-color($pink, $white, $black);
+}
+
+.c-button.is-secondary {
+    @include btn-color($black, $white, $gray);
+}
+
+.c-button.is-inverse {
+    @include btn-color($white, $black, $pink);
+}
+
+.c-button.is-pink {
+    @include btn-color($pink, $white, $black);
+}
+
+.c-button.is-blue {
+    @include btn-color($blue, $white, $black);
+}
+
+.c-button.is-lime {
+    @include btn-color($lime, $black, $white);
+}
+
+.c-button.is-purple {
+    @include btn-color($purple, $white, $black);
+}
+
+.c-button--small {
+    padding: rem(8px) rem(14px);
+}

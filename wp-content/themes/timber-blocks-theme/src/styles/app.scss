@@ -1,76 +1,116 @@
-:root {
-  --color-bg: #ffffff;
-  --color-text: #111111;
-  --color-surface: #f3f4f6;
-  --color-primary: #1d4ed8;
-  --color-muted: #6b7280;
-  --container: 1200px;
-}
+@charset "utf-8";
 
-* {
-  box-sizing: border-box;
-}
+/*--------------------------------------------------------------
+=== 1.0 Base ===
+--------------------------------------------------------------*/
+@use "sass:color";
+@use "sass:list";
+// @use "sass:map";
+@use "sass:math";
+// @use "sass:meta";
+@use "sass:selector";
+@use "sass:string";
 
-html {
-  font-size: 16px;
-}
+/* CSS Reset + Normalize */
+@import "../../../../../node_modules/css-reset-and-normalize/scss/reset-and-normalize";
 
-body {
-  margin: 0;
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  line-height: 1.6;
-}
+/* Custom tools like family, functions, and mixins are included here for reuse throughout the theme. */
+@import "blocks";
 
-img {
-  display: block;
-  max-width: 100%;
-}
+@import "helpers/animations";
+@import "helpers/css-variables";
+@import "helpers/helpers";
+@import "helpers/ratio";
 
-.l-wrap {
-  width: min(var(--container), calc(100% - 2rem));
-  margin-inline: auto;
-}
+/* The 'base' styles provide the fundamental styling for the theme, such as typography and media rules. */
+@import "base/base";
+@import "base/typography";
+@import "base/links";
+@import "base/media";
+@import "components/buttons"; // technically a component, but used like an element
 
-.c-block {
-  padding-block: clamp(3rem, 5vw, 6rem);
-}
+/*--------------------------------------------------------------
+=== 2.0 Layout ===
+--------------------------------------------------------------*/
+/* This section includes styles for building layout components like the header, footer, sidebar, and post layout. */
 
-.c-block__inner {
-  width: min(var(--container), calc(100% - 2rem));
-  margin-inline: auto;
-}
+// @import "layout/builder";
+@import "layout/footer";
+@import "layout/forms";
+@import "layout/header";
+@import "layout/page";
+@import "layout/post";
+@import "layout/sidebar";
 
-.c-block__eyebrow {
-  display: inline-block;
-  margin-bottom: 1rem;
-  color: var(--color-muted);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
+/*--------------------------------------------------------------
+=== 3.0 Components ===
+--------------------------------------------------------------*/
+/* This section contains styles for various reusable components like articles, banners, buttons, cards, and more. */
 
-.c-button-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
+// @import "components/alert";
+// @import "components/article";
+// @import "components/banner-builder";
+// @import "components/banner";
+// @import "components/blockquote";
+// @import "components/blog";
+// // @import "components/buttons"; moved to Elements
+// @import "components/call-to-action";
+// @import "components/callout";
+// @import "components/card";
+// @import "components/contact";
+// @import "components/content";
+// @import "components/downloads";
+// @import "components/dropdown";
+// @import "components/embed";
+// @import "components/fittext";
+// @import "components/footer";
+// @import "components/form";
+// @import "components/gallery";
+// @import "components/grid";
+// @import "components/hamburger";
+// @import "components/image";
+// @import "components/intro";
+// @import "components/menu";
+// @import "components/nav-keyboard";
+// @import "components/nav-primary";
+// @import "components/nav-utility";
+// @import "components/newsletter";
+// @import "components/pagination";
+// @import "components/podcast";
+// @import "components/quote";
+// @import "components/repeater";
+// @import "components/resources";
+// @import "components/slideshow";
+// @import "components/tease";
+// @import "components/testimonial";
+// @import "components/text-media";
+// @import "components/topics";
+// @import "components/video";
 
-.c-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.8rem 1.4rem;
-  border-radius: 999px;
-  background: #fff;
-  color: var(--color-text);
-  text-decoration: none;
-  font-weight: 600;
-}
+/*--------------------------------------------------------------
+=== 4.0 Pages ===
+--------------------------------------------------------------*/
+/* This section includes styles specific to different pages of the website, such as about, blog, home, work, etc. */
 
-.c-button--primary {
-  background: var(--color-primary);
-  color: #fff;
-}
+@import "pages/approach";
+@import "pages/case-study";
+@import "pages/coaching";
+@import "pages/contact";
+@import "pages/donate";
+@import "pages/errors";
+@import "pages/home";
+@import "pages/impact";
+@import "pages/impossible";
+@import "pages/leap-of-faith";
+@import "pages/mission";
+@import "pages/news";
+@import "pages/newsletter";
+@import "pages/oa-resources";
+@import "pages/offerings";
+@import "pages/one-anothering";
+@import "pages/podcast";
+@import "pages/small-groups";
+@import "pages/speakers";
+@import "pages/team";
+@import "pages/who";
+@import "pages/workshops";

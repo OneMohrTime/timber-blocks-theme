@@ -1,0 +1,157 @@
+/* ==========================================================================
+    Variables
+========================================================================== */
+
+// Colors
+// =============================================================================
+
+$black:           #1c1c1c;
+$black--light:    #333333;
+$black--lighter:  #4d4d4d;
+$black--lightest: #777777;
+
+$white:          #fff;
+$white--dark:    #f2ede7;
+$white--darker:  #ddd8d1;
+$white--darkest: #c8c3bc;
+
+$gray:           #918b7a;
+$gray--lightest: #a29b8b;
+$gray--lighter:  #b5ae9d;
+$gray--light:    #f8f4ed;
+$gray--dark:     #7e7868;
+$gray--darker:   #6b6556;
+$gray--darkest:  #585247;
+
+$beige:    #edddce;
+$burgundy: #a52a3a;
+$red:      #e93f71;
+$orange:   #eb4424;
+$gold:     #d4a017;
+$yellow:   #f7d039;
+$lime:     #b3d236;
+$green:    #6ebf89;
+$teal:     #1a4b48;
+$blue:     #64beeb;
+$navy:     #255d7a;
+$purple:   #632a79;
+$pink:     #eb3e72;
+
+$color--notice: $blue;
+$color--success: $green;
+$color--warning: $yellow;
+$color--error: $red;
+
+$focus-outline: 2px solid color.adjust($blue, $alpha: -0.6);
+$focus-offset: 2px;
+
+// Social Networks
+$facebook-color:  #4267b2;
+$instagram-color: #e1306c;
+$linkedin-color:  #0e76a8;
+$messenger-color: #006aff;
+$pinterest-color: #e60023;
+$snapchat-color:  #fffc00;
+$twitter-color:   #1da1f2;
+$whatsapp-color:  #25d366;
+$youtube-color:   #f00;
+$dribbble-color:  #ea4c89;
+$github-color:    #4078c0;
+
+// Typography
+// =============================================================================
+
+// Font Families
+$font-body:   "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Avenir Next", "Avenir", "Segoe UI", "Lucida Grande", "Helvetica Neue", "Helvetica", "Fira Sans", "Roboto", "Noto", "Droid Sans", "Cantarell", "Oxygen", "Ubuntu", "Franklin Gothic Medium", "Century Gothic", "Liberation Sans", sans-serif;
+$font-header: "Source Serif 4", "Garamond", "Baskerville", "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+$font-code:   "Monaco", "Consolas", "Lucida Console", monospace;
+$font-impossible: "Playfair Display", Georgia, serif;
+
+// Font Sizes
+$font-h1:      4.5em;      // 72px
+$font-h2:      3.75em;     // 60px
+$font-h3:      2.75em;     // 44px
+$font-h4:      2.25em;     // 36px
+$font-h5:      1.5em;      // 24px
+$font-h6:      1.25em;     // 20px
+$font-base:    1em;        // 16px
+$font-base-lg: 1.125em;    // 18px
+$font-base-md: $font-base; // 16px
+$font-base-sm: 0.875em;    // 14px
+$font-meta:    0.75em;     // 12px
+
+// Font Weights
+$font-hairline: 100;
+$font-thin:     200;
+$font-light:    300;
+$font-book:     400;
+$font-regular:  400;
+$font-medium:   500;
+$font-semibold: 600;
+$font-demibold: 600;
+$font-bold:     700;
+$font-heavy:    800;
+$font-ultra:    800;
+$font-black:    900;
+
+// Line Heights
+$line-height:    1.5em;
+$heading-height: 1.2em;
+
+// Animation Defaults
+// =============================================================================
+
+// Speeds
+$speed: 300ms;
+$speed-fast: math.div($speed, 2);
+$speed-slow: $speed * 1.5;
+$base-duration: $speed;
+
+// Cubic Bezier Styles
+$bezier-sine:  cubic-bezier(0.39, 0.575, 0.565, 1);
+$bezier-quad:  cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$bezier-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+$bezier-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+$bezier-quint: cubic-bezier(0.23, 1, 0.32, 1);
+$bezier-expo:  cubic-bezier(0.19, 1, 0.22, 1);
+$bezier-circ:  cubic-bezier(0.075, 0.82, 0.165, 1);
+$bezier-back:  cubic-bezier(0.175, 0.885, 0.32, 1.275);
+$bezier-slide: cubic-bezier(0, 0, 0.2, 1);
+
+// Sizing Defaults
+// =============================================================================
+
+// Widths
+$container-width: 1280px;
+$inner-width: 1000px;
+$copy-width: 80ch;
+$padding: math.div($container-width - $inner-width, 2);
+
+// Gutter Spacing
+$gutter: 50px;
+$gutter-xs: math.div($gutter, 3);
+$gutter-sm: math.div($gutter, 2);
+$gutter-md: $gutter;
+$gutter-lg: $gutter * 2;
+$gutter-xl: $gutter * 3;
+$gutter-xxl: $gutter * 4;
+
+// Relative Spacing
+$base-spacing: 1.5em;
+$large-spacing: $base-spacing * 2;
+$small-spacing: math.div($base-spacing, 2);
+
+// Borders
+$border-radius: 6px;
+
+// Media Queries (@include-media)
+// =============================================================================
+
+$breakpoints: (
+    tiny: 300px,
+    small: 600px,
+    medium: 900px,
+    large: 1200px,
+    big: 1500px,
+    huge: 1800px
+) !default;

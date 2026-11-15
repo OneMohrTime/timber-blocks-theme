@@ -1,0 +1,19 @@
+/* ==========================================================================
+    Form
+========================================================================== */
+
+.c-form {
+    position: relative;
+
+    .u-subheadline {
+        display: block;
+        font-family: $font-body;
+        font-size: $font-h5;
+        font-weight: $font-bold;
+    }
+
+    p {
+        font-size: $font-base;
+        line-height: $line-height;
+    }
+}

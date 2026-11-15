@@ -1,0 +1,592 @@
+/* ==========================================================================
+	Mixins
+========================================================================== */
+
+//
+// Set the color of the highlight that appears over a link while it's being tapped.
+//
+// By default, the highlight is suppressed.
+//
+// @param  {Color} $value [rgba(0, 0, 0, 0)] - The value of the highlight.
+// @output `-webkit-tap-highlight-color`
+//
+@mixin tap-highlight-color($value: rgba(0, 0, 0, 0)) {
+    -webkit-tap-highlight-color: $value;
+}
+
+//
+// Set whether or not touch devices use momentum-based scrolling for the given element.
+//
+// By default, applies momentum-based scrolling for the current element.
+//
+// @param  {String} $value [rgba(0, 0, 0, 0)] - The type of scrolling.
+// @output `-webkit-overflow-scrolling`
+//
+@mixin overflow-scrolling($value: touch) {
+    -webkit-overflow-scrolling: $value;
+}
+
+//
+// Micro clearfix rules for containing floats.
+//
+// @link   http://www.cssmojo.com/the-very-latest-clearfix-reloaded/
+// @param  {List} $supports The type of clearfix to generate.
+// @output Injects `:::after` pseudo-element.
+//
+@mixin clearfix($supports...) {
+    &::after {
+        display: if(list-contains($supports, table), table, block);
+        clear: both;
+        content: if(list-contains($supports, opera), " ", "");
+    }
+}
+
+//
+// Generate `:hover` and `:focus` styles in one go.
+//
+// @link    https://github.com/inuitcss/inuitcss/blob/master/tools/_tools.mixins.scss
+// @content Wrapped in `:focus` and `:hover` pseudo-classes.
+// @output  Wraps the given content in `:focus` and `:hover` pseudo-classes.
+//
+@mixin hocus {
+    &:focus,
+    &:hover {
+        @content;
+    }
+}
+
+//
+// Generate `:active` and `:focus` styles in one go.
+//
+// @see     {Mixin} u-hocus
+// @content Wrapped in `:focus` and `:active` pseudo-classes.
+// @output  Wraps the given content in `:focus` and `:hover` pseudo-classes.
+//
+@mixin actus {
+    &:focus,
+    &:active {
+        @content;
+    }
+}
+
+//
+// Injects generic rules for disabling UL/OL/LI styles.
+//
+// @output `list-style`, `margin`, `padding`
+//
+@mixin list-reset {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+//
+// Prevent text from wrapping onto multiple lines for the current element.
+//
+// An ellipsis is appended to the end of the line.
+//
+// 1. Ensure that the node has a maximum width after which truncation can occur.
+// 2. Fix for IE 8/9 if `word-wrap: break-word` is in effect on ancestor nodes.
+//
+// @param  {Number} $width [100%] - The maximum width of element.
+// @output `max-width`, `word-wrap`, `white-space`, `overflow`, `text-overflow`
+//
+@mixin truncate($width: 100%) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;  // [2]
+    @if $width {
+        max-width: $width; // [1]
+    }
+}
+
+//
+// Applies accessible hiding to the current element.
+//
+// @param  {Boolean} $important [true] - Whether the visibility is important.
+// @output Properties for removing the element from the document flow.
+//
+@mixin accessibly-hidden($important: true) {
+    $important: important($important);
+    @if $important == true {
+        position: absolute !important
+    } @else {
+        position: absolute;
+    }
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    margin: 0;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    border: 0;
+}
+
+//
+// Allows an accessibly hidden element to be focusable via keyboard navigation.
+//
+// @content For styling the now visible element.
+// @output  Injects `:focus`, `:active` pseudo-classes.
+//
+@mixin accessibly-focusable {
+    @include actus {
+        clip: auto;
+        width: auto;
+        height: auto;
+
+        @content;
+    }
+}
+
+//
+// Hide the current element from all.
+//
+// The element will be hidden from screen readers and removed from the document flow.
+//
+// @link   http://juicystudio.com/article/screen-readers-display-none.php
+// @param  {Boolean} $important [true] - Whether the visibility is important.
+// @output `display`, `visibility`
+//
+@mixin hidden($important: true) {
+    $important: important($important);
+    display: none   $important;
+    visibility: hidden $important;
+}
+
+//
+// Show the current element for all.
+//
+// The element will be accessible from screen readers and visible in the document flow.
+//
+// @param  {String}  $display   [block] - The rendering box used for the element.
+// @param  {Boolean} $important [true]  - Whether the visibility is important.
+// @output `display`, `visibility`
+//
+@mixin shown($display: block, $important: true) {
+    $important: important($important);
+    display: $display $important;
+    visibility: visible  $important;
+}
+
+/* ==========================================================================
+    Mixins
+========================================================================== */
+
+/**
+* === STRUCTURE ===
+*/
+
+@mixin block-width() {
+    margin-top: 0;
+    margin-left: $gutter;
+    margin-right: $gutter;
+    margin-bottom: $gutter-lg;
+
+    @include media(">=medium") {
+        margin-left: $gutter-lg;
+        margin-right: $gutter-lg;
+    }
+
+    @include media(">=large") {
+        margin-left: $gutter-xl;
+        margin-right: $gutter-xl;
+    }
+
+    @include media(">=big") {
+        margin-left: $gutter-xxl;
+        margin-right: $gutter-xxl;
+    }
+}
+
+@mixin content-width() {
+    @include media(">=medium") {
+        // cap line lengths
+        *:not([picture]):not([img]):not([iframe]):not(.u-wysiwyg) {
+            max-width: $copy-width;
+        }
+    }
+}
+
+//
+// Set basic section padding from mobile to desktop
+//
+@mixin padding() {
+    padding-left: $gutter-sm;
+    padding-right: $gutter-sm;
+
+    @include media(">=small") {
+        padding-left: $gutter;
+        padding-right: $gutter;
+    }
+
+    @include media(">=large") {
+        padding-left: $gutter-lg;
+        padding-right: $gutter-lg;
+    }
+
+    @include media(">=big") {
+        padding-left: calc((100% - $container-width) / 2);
+        padding-right: calc((100% - $container-width) / 2);
+    }
+}
+
+/**
+* === ACCESSIBILITY ===
+*/
+
+@mixin visually-hidden($focus: null) {
+    position: absolute !important;
+    border: 0;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    overflow: hidden;
+    word-wrap: normal !important; // Many screen reader and browser combinations announce broken words as they would appear visually.
+
+    $focus: null !default;
+    @if $focus == null {
+        // nothing, continue on
+    } @else {
+        &:focus {
+            top: 5px;
+            left: 5px;
+            display: block;
+            background-color: $yellow--light;
+            color: #444;
+            font-size: 1em;
+            text-decoration: none;
+            line-height: normal;
+            width: auto;
+            height: auto;
+            padding: $gutter-sm $gutter;
+            clip: auto !important;
+            clip-path: none;
+            z-index: 100000; // Above WP toolbar.
+        }
+    }
+}
+
+@mixin hide-visually($toggle: "hide") {
+    @if not index("hide" "unhide", $toggle) {
+        @error "`#{$toggle}` is not a valid value for the `$toggle` argument in " +
+            "the `hide-visually` mixin. Must be either `hide` or `unhide`.";
+    } @else if $toggle == "hide" {
+        border: 0;
+        clip: rect(1px, 1px, 1px, 1px);
+        clip-path: inset(100%);
+        height: 1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+    } @else if $toggle == "unhide" {
+        clip: auto;
+        clip-path: none;
+        height: auto;
+        overflow: visible;
+        position: static;
+        white-space: inherit;
+        width: auto;
+    }
+    // @example scss
+    //   .element {
+    //     @include hide-visually;
+    //
+    //     &:active,
+    //     &:focus {
+    //       @include hide-visually("unhide");
+    //     }
+    //   }
+}
+
+/**
+* === TOOLS ===
+*/
+
+@mixin aspect-ratio($width, $height) {
+    position: relative;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 100%;
+        padding-top: math.div($height, $width) * 100%;
+    }
+
+    & > * {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+@mixin text-shadow() {
+    text-shadow: 2px 2px 4px color.adjust($black, $alpha: -0.95);
+}
+
+@mixin box-shadow($inset: null) {
+    @if $inset == "inset" {
+        box-shadow: inset 1px 2px 10px color.adjust($black, $alpha: -0.95);
+    } @else {
+        box-shadow: 1px 2px 10px color.adjust($black, $alpha: -0.95);
+    }
+}
+
+/**
+* === TYPE STYLES ===
+*/
+
+@mixin type() {
+    font-family: inherit;
+    line-height: inherit;
+    widows: 3;
+    orphans: 3;
+    color: inherit;
+
+    @include last(1) {
+        margin-bottom: 0;
+    }
+}
+
+@mixin title($underline: null) {
+    font-size: $font-h1;
+    letter-spacing: -1.5px;
+
+    @include media("<small") {
+        font-size: $font-h2;
+        font-size: 2.5em;
+        letter-spacing: normal;
+        hyphens: auto;
+        word-break: break-word;
+    }
+
+    @if $underline == "underlined" {
+        @include underlined();
+    }
+}
+
+@mixin subtitle($underline: null) {
+    font-size: $font-h2;
+    letter-spacing: -0.5px;
+
+    @include media("<small") {
+        font-size: 2.25em;
+        letter-spacing: normal;
+        hyphens: auto;
+    }
+
+    @if $underline == "underlined" {
+        @include underlined();
+    }
+}
+
+@mixin paragraph($underline: null) {
+    font-size: $font-h3;
+
+    @include media("<=small") {
+        font-size: 2em;
+    }
+
+    @if $underline == "underlined" {
+        @include underlined();
+    }
+}
+
+@mixin lead($underline: null) {
+    font-size: $font-h5;
+
+    @include media("<=small") {
+        font-size: 1.25em;
+    }
+
+    @if $underline == "underlined" {
+        @include underlined();
+    }
+}
+
+@mixin body-copy($underline: null) {
+    @include type();
+    margin: 0 0 math.div($line-height, 2);
+
+    @if $underline == "underlined" {
+        @include underlined();
+    }
+}
+
+@mixin base-font-size() {
+    // font-size: 1.181vw;
+    font-size: clamp(100%, 1rem + 1vw, 1.33em);
+    font-size: 1rem;
+}
+
+@mixin small-font-size() {
+    font-size: clamp(75%, 1rem + 1vw, 1em);
+    font-size: 0.875rem;
+}
+
+@mixin smaller-font-size() {
+    font-size: clamp(75%, 1rem + 1vw, 1em);
+    font-size: 0.875rem;
+}
+
+@mixin smallest-font-size() {
+    font-size: clamp(62.5%, 1rem + 1vw, 0.75em);
+    font-size: 0.75rem;
+}
+
+@mixin label() {
+    font-family: $font-header;
+    font-size: $font-h5;
+    font-weight: 700;
+    line-height: 1em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+@mixin caption() {
+    margin: 0;
+    // font-size: 1.15vw;
+    font-size: 0.875em;
+    font-family: $font-header;
+    font-weight: 700;
+    line-height: 1em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+@mixin underlined() {
+    position: relative;
+    padding-bottom: calc(.5em + 1px);
+    margin-bottom: .5em;
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background-color: $black--lightest;
+    }
+}
+
+/**
+* === BUTTONS AND LINKS ===
+*/
+
+@mixin inline-block($underline: false, $color: inherit, $display: inline-block) {
+    display: $display;
+    position: relative;
+    transition: color $speed $bezier-slide;
+    text-decoration: none !important;
+    color: $color;
+    cursor: pointer;
+
+    // Faux underline
+    &::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 0;
+        height: 1px;
+        transition: width $speed linear;
+        background-color: currentColor;
+        background-color: $pink;
+        z-index: 2;
+    }
+
+    @if $underline {
+        // Faux underline, faded
+        &::before {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background-color: $gray;
+            z-index: 1;
+        }
+    }
+
+    // Hover, focus
+    @include hocus {
+        color: $color;
+
+        // Faux underline
+        &::after {
+            left: 0;
+            right: auto;
+            width: 100%;
+        }
+    }
+}
+
+@mixin block-link($border: null) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    background: none;
+
+    @if $border == "has-border" {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        border: 10px transparent solid;
+        transition: border $speed;
+        &:hover,
+        &:focus {
+            border-color: color.adjust($yellow, $alpha: -0.15);
+        }
+    } @else {
+        // nothing, continue on
+    }
+}
+
+@mixin btn-color($btnColor: $black, $btnText: $white, $btnHover: $yellow) {
+    background-color: $btnColor;
+    color: $btnText;
+
+    @include hocus {
+        background-color: $btnHover;
+        color: $btnText;
+    }
+}
+
+//
+// Link hover animation that spans multiple lines
+//
+@mixin multiline-link($underline: false, $color: $blue) {
+    display: inline;
+    text-decoration: none;
+    transition: background-size $speed-slow $bezier-slide;
+    background: linear-gradient(0deg, $color, $color) no-repeat right bottom / 0 var(--bg-height);
+    color: inherit;
+    line-height: $heading-height;
+
+    &:where(:hover, :focus-visible) {
+        background-size: 100% var(--bg-height);
+        background-position-x: left;
+    }
+
+    // If underline or background
+    @if $underline {
+        --bg-height: 1px;
+        padding-bottom: 1px;
+
+    } @else {
+        --bg-height: 100%;
+    }
+}

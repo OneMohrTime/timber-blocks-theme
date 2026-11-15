@@ -1,0 +1,100 @@
+/* ==========================================================================
+    News
+========================================================================== */
+
+.t-page.is-news {
+
+    .c-featured-post {
+        @include padding();
+        padding-top: $gutter;
+        padding-bottom: $gutter;
+
+        .u-eyebrow {
+            text-align: left;
+            margin-bottom: 1em;
+            &::after {
+                display: none;
+            }
+        }
+
+        .u-subheadline {
+            font-size: $font-h4;
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            padding-top: $gutter-lg;
+            padding-bottom: $gutter-lg;
+        }
+    }
+
+    .c-instagram {
+        @include padding();
+        padding-top: $gutter;
+        padding-bottom: $gutter;
+
+        #sb_instagram #sbi_images {
+            gap: $gutter-sm;
+            padding: 0;
+        }
+
+        .u-eyebrow {
+            margin-bottom: $gutter;
+            &::after {
+                display: none;
+            }
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            padding-top: $gutter-lg;
+            padding-bottom: $gutter-lg;
+        }
+    }
+
+    .c-textMedia:not(.is-reverse) {
+        margin-top: $gutter;
+        padding-left: 0;
+        padding-right: 0;
+        background-color: $purple;
+        color: $white;
+
+        .c-textMedia__text {
+            margin-bottom: 0;
+            padding: $gutter $gutter-sm;
+
+            .u-eyebrow {
+                margin-bottom: 2em;
+                text-align: left;
+                &::after {
+                    display: none;
+                }
+            }
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            margin-top: $gutter-lg;
+
+            .c-textMedia__text {
+                padding-left: $gutter;
+                padding-right: $gutter;
+            }
+        }
+
+        // screen at or above 1200px
+        @include media(">=large") {
+            .c-textMedia__text {
+                padding-left: $gutter-lg;
+            }
+        }
+
+        // screen at or above 1500px
+        @include media(">=big") {
+            .c-textMedia__text {
+                padding-left: calc((100% - $container-width) / 2);
+            }
+        }
+    }
+
+}

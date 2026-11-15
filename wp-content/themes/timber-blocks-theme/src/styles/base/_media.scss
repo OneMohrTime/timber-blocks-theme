@@ -1,0 +1,137 @@
+/* ==========================================================================
+    Media
+========================================================================== */
+
+img {
+    display: block;
+    height: auto;
+}
+
+// Make sure embeds and iframes fit their containers
+embed,
+iframe,
+object {
+    max-width: 100%;
+}
+
+.c-media {
+    position: relative;
+
+    &.has-frames {
+        position: relative;
+        overflow: visible;
+        z-index: 1;
+    }
+
+    // &.is-interview {
+    //     background-color: $blue;
+    //     color: $white;
+    // }
+    // &.is-anonymous {
+    //     background-color: $pink;
+    //     color: $white;
+    // }
+    // &.is-leadership {
+    //     background-color: $lime;
+    //     color: $black;
+    // }
+}
+
+.c-media__image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+}
+
+.c-media__heading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-left: $gutter-sm;
+    padding-right: $gutter;
+    text-align: center;
+
+    h1, h2 {
+        margin: 0;
+        font-size: $font-h5;
+    }
+
+    // screen at or above 600px
+    @include media(">=small") {
+        padding-left: $gutter;
+        padding-right: $gutter-lg;
+
+        h1, h2 {
+            font-size: $font-h4;
+        }
+    }
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        padding-left: $gutter-sm;
+        padding-right: $gutter;
+    }
+
+    // screen at or above 1200px
+    @include media(">=large") {
+        padding-left: $gutter;
+        padding-right: $gutter-lg;
+
+        h1, h2 {
+            font-size: $font-h3;
+        }
+    }
+}
+
+.c-media__frames {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+
+    &::before,
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    &::before {
+        // background-color: #08B2E1;
+        background-color: #E94443;
+        transform: rotate(-3deg) translateY(3%);
+        transform-origin: top right;
+    }
+
+    &::after {
+        // background-color: #E94443;
+        background-color: #08B2E1;
+        transform: rotate(-3deg) translateY(-3%);
+        transform-origin: bottom left;
+    }
+}
+
+/**
+* === SVG ICONS ===
+*/
+
+.c-media__svg {
+    display: block;
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    resize: both;
+}

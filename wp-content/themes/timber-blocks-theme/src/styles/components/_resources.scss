@@ -1,0 +1,59 @@
+/* ==========================================================================
+    Section: Resource Grid
+========================================================================== */
+
+.o-section.is-resources {
+    @include padding();
+    text-align: center;
+
+    .u-wysiwyg {
+        max-width: rem(800px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .c-grid {
+        margin-top: $base-spacing;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .c-grid__item {
+        position: relative;
+
+        .u-link {
+            @include inline-block(true);
+            line-height: $line-height;
+            &::after {
+                background-color: $white;
+            }
+        }
+    }
+
+    .c-grid__item-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: $gutter-xs;
+        width: 100%;
+        height: 100%;
+        padding: $gutter-sm;
+    }
+
+    // screen at or above 1200px
+    @include media(">=large") {
+        .c-grid__item-content {
+            justify-content: flex-end;
+            gap: 0;
+
+            .u-heading {
+                margin-top: auto;
+                margin-bottom: auto;
+            }
+        }
+    }
+}

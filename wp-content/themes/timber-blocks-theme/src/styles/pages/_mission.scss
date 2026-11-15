@@ -1,0 +1,264 @@
+/* ==========================================================================
+    Mission
+========================================================================== */
+
+.t-page.is-mission {
+
+    .c-textMedia.is-challenge {
+        @include padding();
+        padding-top: $gutter;
+        padding-bottom: $gutter;
+        background-color: $black;
+        color: $white;
+        z-index: 1;
+
+        .c-textMedia__media {
+            flex-basis: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            flex-wrap: wrap;
+            padding-top: $gutter-lg;
+            padding-bottom: $gutter-lg;
+        }
+
+        .u-subheadline {
+            margin-bottom: $gutter;
+        }
+    }
+
+    .c-content.is-mission {
+        @include padding();
+        padding-top: $gutter;
+        padding-bottom: $gutter;
+        text-align: center;
+        background-color: $gray--light;
+        background-image: url("https://colossianforum.org/wp-content/uploads/header-texture.png");
+        background-blend-mode: multiply;
+        background-repeat: repeat;
+
+        // screen at or above 1200px
+        @include media(">=large") {
+            padding-top: $gutter-lg;
+            padding-bottom: $gutter-lg;
+        }
+
+        .c-grid {
+            max-width: 100%;
+        }
+        .c-grid__item {
+            flex-basis: calc(percentage(math.div(1, 3)) - $gutter);
+            text-align: left;
+            background-color: transparent;
+            color: inherit;
+            .u-heading {
+                font-family: $font-body;
+                font-size: $font-h6;
+                font-weight: $font-bold;
+            }
+            .u-wysiwyg {
+                padding: 0;
+            }
+        }
+
+        .u-subheadline {
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: $base-spacing;
+        }
+    }
+
+    .c-textMedia.is-history {
+        @include padding();
+        padding-top: $gutter;
+        padding-bottom: $gutter;
+        background-color: $black;
+        color: $white;
+        z-index: 1;
+
+        .c-textMedia__media {
+            flex-basis: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            flex-wrap: wrap;
+            padding-top: $gutter-lg;
+            padding-bottom: $gutter-lg;
+
+            .c-textMedia__text {
+                flex-basis: 100%;
+                display: flex;
+                max-width: 100%;
+                .u-subheadline,
+                .u-wysiwyg {
+                    flex: 0 1 50%;
+                }
+            }
+        }
+
+        .u-eyebrow {
+            flex: 1 1 100%;
+            max-width: 100%;
+        }
+    }
+
+    .c-content.is-connection {
+        @include padding();
+        padding-top: $gutter;
+        padding-bottom: $gutter;
+        text-align: center;
+
+        .c-grid {
+            max-width: 100%;
+        }
+        .c-grid__item {
+            flex-basis: calc(percentage(math.div(1, 3)) - $gutter);
+            text-align: left;
+            background-color: transparent;
+            color: inherit;
+            .u-heading {
+                font-family: $font-body;
+                font-size: $font-h5;
+                font-weight: $font-bold;
+                text-transform: uppercase;
+            }
+            .u-wysiwyg {
+                padding: 0;
+                p:first-child {
+                    font-weight: $font-bold;
+                }
+            }
+            &:nth-child(1) {
+                .u-heading { color: $pink; }
+            }
+            &:nth-child(2) {
+                .u-heading { color: $blue; }
+            }
+            &:nth-child(3) {
+                .u-heading { color: $lime; }
+            }
+        }
+
+        .u-subheadline {
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: $small-spacing;
+        }
+
+        .u-wysiwyg {
+            margin-bottom: $gutter;
+            p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            padding-top: $gutter-lg;
+            padding-bottom: $gutter-lg;
+        }
+
+        // screen at or above 1200px
+        @include media(">=large") {
+            .c-grid {
+                gap: $gutter-lg;
+            }
+            .c-grid__item {
+                flex-basis: calc(percentage(math.div(1, 3)) - $gutter-lg);
+            }
+        }
+    }
+
+    .c-content.is-present {
+        @include padding();
+        padding-top: $gutter;
+        padding-bottom: $gutter;
+        background-color: $gray--light;
+        background-image: url("https://colossianforum.org/wp-content/uploads/header-texture.png");
+        background-blend-mode: multiply;
+        background-repeat: repeat;
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            padding-top: $gutter-lg;
+            padding-bottom: $gutter-lg;
+        }
+
+        .u-subheadline {
+            max-width: 960px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: $gutter;
+            text-align: center
+        }
+
+        .c-textMedia {
+            column-gap: $gutter;
+            max-width: 100%;
+            & + .c-textMedia {
+                margin-top: $gutter;
+            }
+        }
+    }
+
+    .c-textMedia.is-next {
+        padding-left: 0;
+        padding-right: 0;
+
+        .c-textMedia__text {
+            margin-bottom: 0;
+            padding: $gutter;
+
+            .u-eyebrow {
+                margin-bottom: 2em;
+                text-align: left;
+                &::after {
+                    display: none;
+                }
+            }
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            .c-textMedia__text {
+                padding-left: $gutter;
+                padding-right: 0;
+            }
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            .c-textMedia__text {
+                padding-left: $gutter-lg;
+            }
+        }
+
+        @include media(">=big") {
+            .c-textMedia__text {
+                padding-left: calc((100% - $container-width) / 2);
+            }
+        }
+    }
+
+}

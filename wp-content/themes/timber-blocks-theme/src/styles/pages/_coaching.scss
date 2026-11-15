@@ -1,0 +1,62 @@
+/* ==========================================================================
+    Coaching
+========================================================================== */
+
+.t-page.is-coaching {
+
+    .c-banner {
+        margin-bottom: 0
+    }
+
+    .c-intro {
+        @include padding();
+        padding-top: $gutter;
+        padding-bottom: $gutter;
+        text-align: center;
+        background-color: $white--dark;
+        background-image: url("https://colossianforum.org/wp-content/uploads/header-texture.png");
+        background-blend-mode: multiply;
+        background-repeat: repeat;
+
+        h2, h3, h4 {
+            margin-bottom: $small-spacing;
+            font-size: $font-h5;
+        }
+
+        p {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            padding-top: $gutter-lg;
+            padding-bottom: $gutter-lg;
+
+            h2, h3, h4 {
+                font-size: $font-h3;
+            }
+        }
+    }
+
+    .c-form {
+        @include padding();
+        padding-top: $gutter;
+        padding-bottom: $gutter;
+
+        .u-heading {
+            margin-bottom: $small-spacing;
+            text-align: center;
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            padding-top: $gutter-lg;
+            padding-bottom: $gutter-lg;
+
+            .u-heading {
+                margin-bottom: $gutter;
+            }
+        }
+    }
+}

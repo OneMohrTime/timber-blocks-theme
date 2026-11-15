@@ -1,0 +1,67 @@
+/* ==========================================================================
+    Section: Newsletter
+========================================================================== */
+
+.o-section.is-newsletter {
+    @include padding();
+    display: flex;
+    flex-direction: column;
+    gap: $gutter-sm;
+
+    .c-embed {
+        margin-top: $base-spacing;
+        padding: 0;
+
+        ._form-content {
+            line-height: $line-height;
+        }
+
+        ._form-branding {
+            display: none;
+        }
+
+        ._form_element ._form-title {
+            font-size: rem(20px);
+            font-weight: $font-medium;
+            line-height: $heading-height;
+        }
+
+        ._form_element._field_html {
+            margin-bottom: $base-spacing;
+        }
+
+        ._form_element {
+            & + ._form_element,
+            & + ._button-wrapper,
+            & + .sms_consent_checkbox {
+                margin-top: $small-spacing;
+            }
+            ._field-wrapper input,
+            ._field-wrapper textarea {
+                width: 100%;
+            }
+            ._form-label {
+                margin-bottom: 0.5em;
+                font-weight: $font-bold;
+            }
+        }
+
+        ._button-wrapper ._submit {
+            @include btn-style();
+        }
+    }
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        flex-direction: row;
+
+        .c-media,
+        .c-media + div {
+            flex: 0 1 50%;
+        }
+
+        &.u-spacing-none {
+            padding-left: 0;
+        }
+    }
+}

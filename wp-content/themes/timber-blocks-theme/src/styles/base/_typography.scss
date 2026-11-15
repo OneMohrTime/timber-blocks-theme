@@ -1,0 +1,326 @@
+/* ==========================================================================
+    Typography
+========================================================================== */
+
+::selection {
+    color: $white;
+    background-color: $blue;
+    text-shadow: none;
+}
+
+/**
+ * === HEADINGS ===
+ */
+
+@for $i from 1 through 6 {
+    h#{$i} {
+        position: relative;
+        display: block;
+        margin: 0 0 .5em;
+        font-family: $font-header;
+        font-weight: $font-regular;
+        text-transform: none;
+        line-height: $heading-height;
+        color: inherit;
+
+        @include first(1) {
+            margin-top: 0;
+        }
+
+        a {
+            line-height: inherit;
+            color: inherit;
+        }
+    }
+}
+
+.is-h1,
+h1 {
+    font-size: $font-h1;
+}
+.is-h2,
+h2 {
+    font-size: $font-h2;
+}
+.is-h3,
+h3 {
+    font-size: $font-h3;
+}
+.is-h4,
+h4 {
+    font-size: $font-h4;
+}
+.is-h5,
+h5 {
+    font-size: $font-h5;
+}
+.is-h6,
+h6 {
+    font-size: $font-h6;
+}
+
+.u-wysiwyg {
+    font-weight: normal;
+    line-height: $line-height;
+
+    &.u-matching-headlines {
+        h1, h2, h3, h4, h5, h6 {
+            margin-bottom: $small-spacing !important;
+            font-size: $font-h5;
+
+            // screen at or above 600px
+            @include media(">=small") {
+                font-size: $font-h3;
+            }
+        }
+    }
+
+    .read-more {
+        display: none !important;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        // headers in a wysiwyg section only...hopefully
+        &:not([class]) {
+            margin-bottom: math.div($line-height, 2);
+            margin-bottom: $base-spacing;
+        }
+        // remove top margin for first heading in sections
+        &:not([class]):not(:first-child) {
+            margin-top: math.div($line-height, 2);
+        }
+    }
+
+    p, ul, ol {
+        line-height: inherit;
+        & + p,
+        & + ul,
+        & + ol,
+        & + .c-button {
+            margin-top: $line-height;
+        }
+    }
+}
+
+/**
+ * === BODY COPY ===
+ */
+
+p {
+    @include type();
+
+    &:last-child,
+    &:only-child {
+        margin-bottom: 0;
+    }
+}
+
+b, strong {
+    font-weight: 600;
+}
+
+sub, sup {
+    font-size: .75em;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+small {
+    font-size: .75em;
+}
+
+/**
+* === LISTS ===
+*/
+
+ul, ol, dl {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .u-wysiwyg & {
+        @include type();
+        margin: 0 0 $line-height;
+        padding-left: $line-height;
+
+        li {
+            padding-left: math.div($line-height, 3);
+        }
+        li::marker {
+            content: "\25C7";
+            font-size: 1em;
+            color: inherit;
+        }
+
+        & ul,
+        & ol,
+        & dl {
+            margin: 0;
+        }
+    }
+}
+
+.u-wysiwyg ul {
+    list-style-type: circle;
+    list-style-type: disc;
+}
+
+.u-wysiwyg ol {
+    list-style-type: decimal;
+}
+
+/**
+* === UTILITY CLASSES ===
+*/
+
+.u-title {
+    @include title();
+
+    &.is-underline {
+        @include title("underlined");
+    }
+}
+
+.u-headline {
+    @include subtitle();
+
+    &.is-underline {
+        @include subtitle("underlined");
+    }
+}
+
+.u-subheadline {
+    @include paragraph();
+
+    &.is-underline {
+        @include paragraph("underlined");
+    }
+}
+
+.u-heading {
+    font-size: $font-h4;
+}
+
+.u-lead {
+    @include lead();
+}
+
+.u-eyebrow {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: $gutter-lg;
+    font-size: $font-base-sm;
+    font-weight: $font-bold;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.667em;
+    line-height: $heading-height;
+
+    &::after {
+        content: url("https://colossianforum.org/wp-content/uploads/eyebrow.png");
+        position: absolute;
+        top: $gutter;
+        left: calc(50% - 15px);
+        width: 30px;
+        height: 29px;
+    }
+
+    &.no-symbol {
+        margin-left: 0;
+        margin-bottom: $small-spacing;
+        text-align: left;
+
+        &::after {
+            display: none;
+        }
+    }
+}
+
+.u-highlight {
+    color: $yellow;
+}
+
+/**
+ * === ADDITIONAL ADDITIONS ===
+ */
+
+i, cite, em, var, address, dfn {
+    margin: 0;
+    font-family: inherit;
+    font-style: italic;
+}
+
+abbr {
+    padding: 2px 4px;
+    text-decoration: none;
+    border-bottom: 1px $black dotted;
+    background-color: color.adjust($black, $alpha: -0.95);
+    cursor: help;
+
+    &:focus {
+        padding: 0;
+        font-size: 0;
+        line-height: initial;
+        outline: $focus-outline;
+        outline-offset: $focus-offset;
+        border-bottom: 0;
+        background-color: transparent;
+
+        &::after {
+            content: attr(title);
+            display: inline-block;
+            padding: 2px 4px;
+            text-decoration: none;
+            line-height: inherit;
+            border-bottom: 1px $black dotted;
+            background-color: color.adjust($black, $alpha: -0.95);
+        }
+    }
+}
+
+mark {
+    background-color: $blue;
+    color: $white;
+}
+
+blockquote {
+    border-left: 10px $blue solid;
+    margin: $base-spacing 0;
+    padding-left: 10px;
+
+    p {
+        margin-bottom: 0;
+    }
+
+    footer {
+        position: relative;
+        font-size: .75em;
+        color: $black--light;
+
+        cite {
+            display: block;
+            margin-top: 1em;
+            padding-left: 1.5em;
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        &::before {
+            content: "\2014 \00A0";
+            position: absolute;
+        }
+    }
+}
+
+hr {
+    width: 50%;
+    height: 10px;
+    margin: 0 auto $base-spacing;
+    border: 0;
+    background-color: $blue;
+}

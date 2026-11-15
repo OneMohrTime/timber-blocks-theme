@@ -1,0 +1,40 @@
+/* ==========================================================================
+    General Page Stucture
+========================================================================== */
+
+// Default page settings
+
+.o-page {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 100%;
+}
+
+.o-page__sections {
+    display: flex;
+    flex-direction: column;
+}
+
+.o-page__nav {
+    @include padding();
+    padding-bottom: $gutter;
+
+    h3 {
+        @include label();
+        margin-bottom: $small-spacing;
+        font-family: $font-body;
+    }
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        padding-bottom: $gutter-lg;
+    }
+}
+
+// Default page components
+
+.c-intro {
+    @include padding();
+    padding-top: $gutter;
+    padding-bottom: $gutter;
+}

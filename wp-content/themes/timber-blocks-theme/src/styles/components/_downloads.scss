@@ -1,0 +1,23 @@
+/* ==========================================================================
+    Section: Downloadables
+========================================================================== */
+
+.o-section.is-downloads {
+    @include padding();
+
+    .u-wysiwyg {
+        max-width: rem(800px);
+    }
+
+    .c-grid {
+        margin-top: $base-spacing;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .c-grid__item {
+        position: relative;
+        background-color: transparent;
+        color: inherit;
+    }
+}

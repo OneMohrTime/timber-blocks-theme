@@ -1,0 +1,39 @@
+/* ==========================================================================
+    Gallery (Masonry)
+========================================================================== */
+
+.o-section.is-gallery {
+    padding-left: 0;
+    padding-right: 0;
+
+    .c-gallery {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.c-gallery {
+    position: relative;
+    padding-left: $gutter;
+    padding-right: $gutter;
+
+    .swiper.is-gallery {
+        width: 100%;
+        height: 100%;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        --swiper-navigation-size: 24px;
+        @include btn-style();
+        height: 50px;
+    }
+
+    // // screen at or above 600px
+    // @include media(">=small") {
+    // }
+}
+
+.c-gallery__image-link {
+    display: block;
+}

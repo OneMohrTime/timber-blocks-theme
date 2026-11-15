@@ -1,0 +1,17 @@
+/* ==========================================================================
+    Pagination
+========================================================================== */
+
+.c-pagination {
+    flex: 1 1 100%;
+    position: relative;
+    max-width: 100%;
+    text-align: center;
+}
+
+.c-pagination__menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}

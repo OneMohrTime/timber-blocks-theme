@@ -1,0 +1,35 @@
+/* ==========================================================================
+    Section: Embeds
+========================================================================== */
+
+.c-embed {
+    @include padding();
+
+    /**
+     * === ACTIVECAMPAIGN FORMS ===
+     */
+    ._form._inline-form {
+        max-width: $inner-width !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        text-align: left !important;
+        background: transparent !important;
+        color: inherit !important;
+
+        ._form-title {
+            font-family: $font-header !important;
+            font-weight: $font-regular !important;
+        }
+
+        ._form-label,
+        ._submit,
+        label,
+        input {
+            font-family: $font-body !important;
+        }
+
+        // ._submit {
+        //     @include btn-style($pink, $white);
+        // }
+    }
+}

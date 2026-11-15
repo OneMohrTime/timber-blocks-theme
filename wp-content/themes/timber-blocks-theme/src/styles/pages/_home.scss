@@ -1,0 +1,284 @@
+/* ==========================================================================
+    Home
+========================================================================== */
+
+.t-page.is-home {
+
+    // Banner
+    .c-banner.is-default {
+        padding-top: $gutter-lg;
+        padding-bottom: $gutter-lg;
+
+        // screen at or above 600px
+        @include media(">=small") {
+            padding-top: $gutter-xl;
+            padding-bottom: $gutter-xl;
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            height: 550px;
+        }
+
+        .c-banner__media {
+            opacity: 0.8;
+        }
+    }
+    .c-banner.is-video {
+        .u-eyebrow {
+            margin-top: $base-spacing;
+            margin-bottom: 0;
+            &::after {
+                display: none;
+            }
+        }
+        // screen at or above 900px
+        @include media(">=medium") {
+            .u-eyebrow {
+                margin-top: $large-spacing;
+            }
+        }
+
+    }
+
+    // Stats
+    .is-stats {
+        text-align: center;
+        background-color: $black;
+        color: $white;
+
+        &.c-content {
+            @include padding();
+            padding-top: $gutter;
+            padding-bottom: $gutter-sm;
+            .u-subheadline {
+                margin-bottom: 0;
+            }
+        }
+
+        &.c-grid {
+            padding-bottom: $gutter;
+            .u-title {
+                font-family: $font-body;
+                font-weight: $font-bold;
+            }
+            .u-wysiwyg {
+                max-width: 300px;
+                margin: 0 auto;
+                & + .u-link {
+                    @include inline-block(true);
+                    margin-top: $base-spacing;
+                    line-height: $line-height;
+                }
+            }
+        }
+
+        .u-subheadline {
+            max-width: 960px !important;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            &.c-content {
+                padding-top: $gutter-lg;
+                padding-bottom: $gutter;
+            }
+            &.c-grid {
+                padding-bottom: $gutter-xl;
+            }
+            .c-grid__item {
+                max-width: calc(percentage(math.div(1, 3)) - $gutter);
+            }
+        }
+
+        // screen at or above 1200px
+        @include media(">=large") {
+            .c-grid__item {
+                max-width: 25%;
+            }
+        }
+    }
+
+    // Card Links
+    .is-cards {
+        background-color: $white--dark;
+        background-image: url("https://colossianforum.org/wp-content/uploads/header-texture.png");
+        background-blend-mode: multiply;
+        background-repeat: repeat;
+
+        &.c-content {
+            @include padding();
+            padding-top: $gutter;
+            padding-bottom: $gutter;
+        }
+
+        &.c-grid {
+            max-width: 100% !important;
+            margin-top: $gutter;
+            padding-left: 0;
+            padding-right: 0;
+            text-align: left;
+            .u-heading,
+            .u-wysiwyg {
+                text-align: left;
+            }
+        }
+
+        .c-grid__item {
+            background-color: $white;
+            color: $black--light;
+            .c-media__image {
+                transition: transform $speed $bezier-slide;
+            }
+            .u-heading {
+                padding-left: 1em;
+                padding-right: 1em;
+                transition: color $speed $bezier-slide;
+            }
+            .u-wysiwyg {
+                padding: 0 1em 1em;
+            }
+            @include hocus {
+                .c-media__image {
+                    transform: scale(1.25);
+                }
+                .u-heading {
+                    color: $blue;
+                }
+            }
+        }
+
+        .u-eyebrow,
+        .u-subheadline,
+        .u-wysiwyg {
+            max-width: 800px !important;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        .u-wysiwyg {
+            p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        .u-heading {
+            margin-top: 0.75em;
+            font-family: $font-body;
+            font-size: $font-base-lg;
+            font-weight: $font-bold;
+            color: $purple;
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            &.c-content {
+                @include padding();
+                padding-top: $gutter-lg;
+                padding-bottom: $gutter-lg;
+            }
+            &.c-grid {
+                padding-left: $gutter;
+                padding-right: $gutter;
+            }
+            .c-grid__item {
+                max-width: calc(percentage(math.div(1, 3)) - $gutter) !important;
+            }
+        }
+    }
+
+    .c-callout {
+        @include padding();
+        background-color: $black;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+
+        &.is-work {
+            color: $white;
+
+            .c-media:has(.is-logo) {
+                max-width: 85px;
+                max-height: 85px;
+                margin-bottom: $gutter-sm;
+            }
+
+            .c-button.is-secondary {
+                @include btn-style($white, $black);
+            }
+        }
+
+        &.is-pdf {
+            color: $white;
+        }
+    }
+
+    .is-election {
+        @include padding();
+        background-color: $white--dark;
+        background-image: url("https://colossianforum.org/wp-content/uploads/header-texture.png");
+        background-blend-mode: multiply;
+        background-repeat: repeat;
+
+        &.c-content {
+            padding-top: $gutter;
+        }
+        &.c-textMedia {
+            padding-bottom: $gutter;
+        }
+
+        .c-textMedia__text {
+            margin-bottom: $gutter;
+        }
+
+        .u-eyebrow {
+            margin-bottom: 0;
+            padding-bottom: $gutter-lg;
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            &.c-content {
+                padding-top: $gutter-lg;
+            }
+            &.c-textMedia {
+                column-gap: $gutter-lg;
+                padding-bottom: $gutter-xl;
+            }
+        }
+    }
+
+    .c-testimonials {
+        .u-subheadline {
+            display: block;
+            max-width: 960px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+    }
+
+    .c-testimonials__denominations {
+        margin-top: $gutter;
+        font-size: $font-h5;
+        text-align: center;
+
+        .is-denominations {
+            margin-top: $gutter;
+        }
+
+        p {
+            max-width: 960px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            margin-top: $gutter-lg;
+        }
+    }
+
+}

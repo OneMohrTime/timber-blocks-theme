@@ -1,0 +1,174 @@
+/* ==========================================================================
+    Testimonial
+========================================================================== */
+
+$testimonial-photo: 295px;
+
+.o-section.is-testimonials {
+    @include padding();
+
+    // Different style for testimonials section vs regular testimonial
+    .c-testimonials {
+        padding: 0 !important;
+        .swiper-slide {
+            height: auto;
+        }
+    }
+    .c-testimonial {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 0;
+        height: 100%;
+        margin: 0;
+        padding: $gutter-sm;
+        font-size: $font-base-sm;
+        border: 0;
+        border-radius: $border-radius;
+        box-sizing: border-box;
+
+        .c-media__image {
+            max-width: rem(72px);
+            margin-bottom: $small-spacing;
+            border-radius: $border-radius;
+        }
+
+        p:last-of-type {
+            margin-bottom: $base-spacing;
+        }
+
+        cite {
+            margin-top: auto;
+            font-style: normal;
+            font-weight: $font-bold;
+            line-height: $heading-height;
+        }
+    }
+    .c-testimonial__testimonials {
+        margin-top: $gutter;
+    }
+}
+
+.c-testimonials {
+    @include padding();
+    padding-top: $gutter;
+    padding-bottom: $gutter;
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        padding-top: $gutter-lg;
+        padding-bottom: $gutter-lg;
+    }
+
+    .u-wysiwyg {
+        line-height: $line-height;
+    }
+
+    .c-testimonials__button {
+        margin-top: $gutter-sm;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            margin-top: $gutter-lg;
+        }
+    }
+}
+
+.c-testimonials__quotes {
+    width: 100%;
+
+    .swiper-wrapper {
+        box-sizing: border-box !important;
+    }
+
+    .swiper-pagination {
+        position: relative;
+        top: auto !important;
+        bottom: auto !important;
+        margin-top: $gutter-sm;
+
+        .swiper-pagination-bullet {
+            width: 18px;
+            height: 18px;
+            opacity: 1;
+            background: transparent;
+            background-color: transparent;
+            box-shadow: inset 0 0 0 2px $purple;
+        }
+        .swiper-pagination-bullet-active {
+            background-color: $purple !important;
+        }
+    }
+
+    .swiper-slide:not(.swiper-slide-active) {
+        opacity: 0 !important;
+    }
+}
+
+.c-testimonial {
+    position: relative;
+    display: flex !important;
+    flex-direction: column;
+    gap: $gutter-sm;
+    padding: 0 $gutter $gutter-sm;
+    transition: opacity $speed $bezier-slide,
+                background $speed $bezier-slide;
+    text-align: center;
+    background-color: $white;
+
+    .c-media {
+        flex: 1 1 math.div($testimonial-photo, 2);
+        width: math.div($testimonial-photo, 2);
+        height: math.div($testimonial-photo, 2);
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: $testimonial-photo;
+    }
+
+    .u-label {
+        position: relative;
+        display: block;
+        margin-top: $small-spacing;
+        font-style: normal;
+        font-weight: $font-bold;
+    }
+
+    // screen at or above 600px
+    @include media(">=small") {
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        .c-media {
+            flex-basis: $testimonial-photo;
+            width: auto;
+            height: $testimonial-photo;
+            margin: 0;
+        }
+        .u-wysiwyg {
+            max-width: calc(100% - ($testimonial-photo + $gutter-sm));
+        }
+        .u-label {
+            text-align: right;
+        }
+    }
+
+    // screen at or above 900px
+    @include media(">=medium") {
+        padding-left: $gutter-lg;
+        padding-right: $gutter-lg;
+    }
+
+    // screen at or above 1200px
+    @include media(">=large") {
+        gap: $gutter;
+        padding-left: $gutter-xl;
+        padding-right: $gutter-xl;
+        .u-wysiwyg {
+            max-width: calc(100% - ($testimonial-photo + $gutter));
+        }
+    }
+}

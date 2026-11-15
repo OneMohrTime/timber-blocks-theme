@@ -1,0 +1,92 @@
+/* ==========================================================================
+    What We Offer
+========================================================================== */
+
+.t-page.is-small-groups {
+
+    .c-banner {
+        margin-bottom: 0
+    }
+
+    .o-page {
+        padding-bottom: $gutter-lg;
+        background-color: $white--dark;
+        background-image: url("https://colossianforum.org/wp-content/uploads/header-texture.png");
+        background-blend-mode: multiply;
+        background-repeat: repeat;
+    }
+
+    .c-intro {
+        @include padding();
+        padding-top: $gutter;
+        padding-bottom: $gutter;
+        text-align: center;
+
+        h2, h3 {
+            margin-bottom: $gutter-sm;
+        }
+
+        p {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    .c-sections {
+        @include padding();
+    }
+
+    .c-textMedia {
+        padding-left: 0;
+        padding-right: 0;
+        background-color: $white;
+        box-shadow: 0 4px 4px 0 color.adjust($black, $alpha: -0.93);
+
+        .u-eyebrow {
+            margin-left: 0;
+            margin-bottom: $base-spacing;
+            text-align: left;
+            &::after {
+                display: none;
+            }
+        }
+
+        .u-subheadline {
+            font-size: $font-h4;
+        }
+
+        .c-button {
+            margin-top: $gutter-sm;
+        }
+
+        .c-textMedia__text {
+            padding: $gutter;
+        }
+
+        & + .c-textMedia {
+            margin-top: $gutter;
+        }
+
+        // screen at or above 900px, below 1199px
+        @include media(">=medium", "<large") {
+            align-items: stretch;
+
+            .c-textMedia__text {
+                padding-left: 0;
+            }
+
+            .c-media {
+                height: 100%;
+            }
+        }
+
+        // screen at or above 1200px
+        @include media(">=large") {
+            .c-textMedia__text,
+            .c-textMedia__media {
+                max-width: 50%;
+            }
+        }
+    }
+
+}

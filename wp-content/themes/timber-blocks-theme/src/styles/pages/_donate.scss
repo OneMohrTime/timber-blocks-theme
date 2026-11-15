@@ -1,0 +1,28 @@
+/* ==========================================================================
+    Donate / Giving
+========================================================================== */
+
+.t-page.is-donate {
+
+    .c-content {
+        text-align: center;
+        padding-bottom: $gutter;
+    }
+
+    .c-sections {
+        @include padding();
+        padding-top: $gutter;
+        padding-bottom: $gutter;
+        background-color: $gray--light;
+        background-color: $white--dark;
+        background-image: url("https://colossianforum.org/wp-content/uploads/header-texture.png");
+        background-blend-mode: multiply;
+        background-repeat: repeat;
+    }
+
+    // Donation form by Click&Pledge
+    #CnP_inlineform {
+        max-width: 100%;
+    }
+
+}

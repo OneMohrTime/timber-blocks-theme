@@ -1,0 +1,205 @@
+/* ==========================================================================
+    Approach
+========================================================================== */
+
+.t-page.is-approach {
+
+    .is-action {
+        @include padding();
+        background-color: $white--dark;
+        background-image: url("https://colossianforum.org/wp-content/uploads/header-texture.png");
+        background-blend-mode: multiply;
+        background-repeat: repeat;
+
+        &.c-content {
+            padding-top: $gutter-lg;
+        }
+        &.c-textMedia {
+            column-gap: $gutter-lg;
+            padding-bottom: $gutter-xl;
+        }
+
+        .c-textMedia__text {
+            margin-bottom: $gutter;
+        }
+
+        .u-eyebrow {
+            margin-bottom: 0;
+            padding-bottom: $gutter-lg;
+        }
+
+        // screen at or above 600px
+        @include media(">=small") {
+            .c-textMedia__text {
+                margin-bottom: $gutter-lg;
+            }
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            .c-textMedia__text {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .c-textMedia.is-framework {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+
+        .c-textMedia__text {
+            margin: 0;
+            padding: $gutter;
+
+            @include first(1) {
+                background-color: $lime;
+                color: $black;
+            }
+            @include last(1) {
+                background-color: $blue;
+                color: $black;
+            }
+        }
+
+        .u-eyebrow {
+            text-align: left;
+            &::after {
+                content: url("https://colossianforum.org/wp-content/uploads/eyebrow-white.png");
+                top: 60px;
+                left: 0;
+            }
+        }
+
+        .u-subheadline {
+            font-size: $font-h4;
+        }
+
+        // screen at or above 600px
+        @include media(">=small") {
+            .c-textMedia__text {
+                padding: $gutter-lg;
+            }
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            flex-direction: row;
+            align-items: stretch;
+            column-gap: 0;
+            .c-textMedia__text {
+                max-width: 50%;
+                margin: 0;
+                padding: $gutter;
+            }
+        }
+
+        // screen at or above 1200px
+        @include media(">=large") {
+            .c-textMedia__text {
+                padding: $gutter-lg;
+            }
+        }
+
+        // screen at or above 1500px
+        @include media(">=big") {
+            .c-textMedia__text {
+                @include first(1) {
+                    padding-left: calc((100% - $container-width) / 2);
+                }
+                @include last(1) {
+                    padding-right: calc((100% - $container-width) / 2);
+                }
+            }
+        }
+    }
+
+    .c-textMedia.is-book {
+        @include padding();
+        padding-top: $gutter;
+        padding-bottom: $gutter;
+
+        .c-textMedia__media {
+
+            .c-media__image {
+                max-width: 270px;
+                margin-left: auto;
+                margin-right: auto;
+                transform: rotate(4deg);
+                transition: transform $speed $bezier-slide,
+                            max-width $speed $bezier-slide,
+                            box-shadow $speed $bezier-slide;
+                box-shadow: 5px 8px 10px 0 color.adjust($black, $alpha: -0.85);
+                // straighten on hover
+                &:hover {
+                    transform: rotate(0);
+                    box-shadow: 5px 8px 10px 0 color.adjust($black, $alpha: -0.6);
+                }
+            }
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            justify-content: center;
+            column-gap: $gutter-lg;
+            padding-top: $gutter-lg;
+            padding-bottom: $gutter-lg;
+            .c-textMedia__media {
+                max-width: 270px;
+
+                .c-media__image {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+
+    .c-testimonials {
+        background-color: $white--dark;
+        background-image: url("https://colossianforum.org/wp-content/uploads/header-texture.png");
+        background-blend-mode: multiply;
+        background-repeat: repeat;
+    }
+
+    .c-textMedia.is-next {
+        padding-left: 0;
+        padding-right: 0;
+
+        .c-textMedia__text {
+            margin-bottom: 0;
+            padding: $gutter;
+
+            .u-eyebrow {
+                margin-bottom: 2em;
+                text-align: left;
+                &::after {
+                    display: none;
+                }
+            }
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            .c-textMedia__text {
+                padding-left: $gutter;
+                padding-right: 0;
+            }
+        }
+
+        // screen at or above 900px
+        @include media(">=medium") {
+            .c-textMedia__text {
+                padding-left: $gutter-lg;
+            }
+        }
+
+        @include media(">=big") {
+            .c-textMedia__text {
+                padding-left: calc((100% - $container-width) / 2);
+            }
+        }
+    }
+
+}

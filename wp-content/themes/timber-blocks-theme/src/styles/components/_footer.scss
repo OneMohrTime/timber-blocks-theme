@@ -1,0 +1,138 @@
+/* ==========================================================================
+    Footer
+========================================================================== */
+
+.c-footer {
+    @include padding();
+    position: relative;
+    display: block;
+    padding-top: $gutter;
+    padding-bottom: $gutter;
+
+    .u-subheadline {
+        font-size: $font-h5;
+
+        .u-link {
+            @include inline-block(true);
+        }
+    }
+
+    // at or above 1200px
+    @include media(">=large") {
+        padding-top: $gutter-lg;
+        padding-bottom: $gutter-lg;
+    }
+}
+
+.c-footer__content {
+    display: flex;
+    flex-direction: column;
+    gap: $base-spacing;
+
+    // at or above 900px
+    @include media(">=medium") {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: $gutter;
+    }
+
+    // at or above 1200px
+    @include media(">=large") {
+        flex-wrap: nowrap;
+        align-items: flex-start;
+    }
+}
+
+.c-footer__about {
+    line-height: $line-height;
+
+    // at or above 1200px
+    @include media(">=large") {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+.c-footer__contact {
+    line-height: $line-height;
+
+    // at or above 900px
+    @include media(">=medium") {
+        flex: 0 1 50%;
+        max-width: calc(50% - $gutter-sm);
+    }
+
+    address {
+        font-size: $font-base-sm;
+        font-style: normal;
+        line-height: $line-height;
+    }
+
+    a {
+        @include inline-block();
+    }
+}
+
+.c-footer__social {
+    line-height: $line-height;
+
+    // at or above 900px
+    @include media(">=medium") {
+        flex: 0 1 50%;
+        max-width: calc(50% - $gutter-sm);
+    }
+
+    // at or above 1200px
+    @include media(">=large") {
+    }
+
+    .c-menu {
+        display: flex;
+        flex-direction: row;
+        gap: 1em;
+    }
+
+    .c-media__svg {
+        width: 50px;
+        height: 50px;
+    }
+
+    a {
+        display: block;
+        transition: color $speed $bezier-slide;
+        @include hocus {
+            color: $blue;
+        }
+    }
+}
+
+.c-footer__logo {
+    flex: 1 1 100%;
+    padding-top: $gutter-xs;
+    padding-bottom: $gutter-xs;
+    text-align: center;
+    background-color: $white;
+
+    .c-media__svg,
+    .c-media__image {
+        width: 130px;
+        height: auto;
+    }
+
+    // at or above 600px
+    @include media(">=small") {
+        padding-top: $gutter-sm;
+        padding-bottom: $gutter-sm;
+    }
+
+    // at or above 900px
+    @include media(">=medium") {
+        padding-left: $gutter;
+        padding-right: $gutter;
+
+        .c-media__svg,
+        .c-media__image {
+            width: 175px;
+        }
+    }
+}

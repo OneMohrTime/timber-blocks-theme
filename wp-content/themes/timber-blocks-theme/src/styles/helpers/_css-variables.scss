@@ -1,0 +1,9 @@
+:root {
+    // Fancybox
+    --fancybox-bg: color.adjust($black, $alpha: -0.33) !important;
+    --f-button-color: $yellow !important;
+    // Swiper
+    --swiper-theme-color: #{$blue} !important;
+    --swiper-navigation-color: $black !important;
+    --swiper-navigation-size: #{$gutter} !important;
+}

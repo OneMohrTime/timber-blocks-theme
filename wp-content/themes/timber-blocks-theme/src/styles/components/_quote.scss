@@ -1,0 +1,106 @@
+/* ==========================================================================
+    Section: Quote
+========================================================================== */
+
+.o-section.is-quote {
+    @include padding();
+    position: relative;
+    font-family: $font-header;
+    font-size: $font-h5;
+    line-height: $heading-height;
+
+    &.u-spacing-sm {
+        padding-top: $gutter;
+        padding-bottom: $gutter;
+        cite {
+            margin-bottom: -$gutter-sm;
+        }
+    }
+
+    &.u-spacing-md {
+        padding-top: $gutter-lg;
+        padding-bottom: $gutter-lg;
+        cite {
+            margin-bottom: -$gutter;
+        }
+    }
+
+    &.u-spacing-lg {
+        padding-top: $gutter-xl;
+        padding-bottom: $gutter-xl;
+        cite {
+            margin-bottom: -$gutter;
+        }
+    }
+
+    .c-quote {
+        margin: 0;
+        padding: 0;
+        border: none;
+
+        &.is-left-aligned {
+            text-align: left;
+            p {
+                margin: 0 auto 0 0;
+                &::before,
+                &::after {
+                    display: none;
+                }
+            }
+        }
+        &.is-center-aligned {
+            text-align: center;
+            p {
+                margin: 0 auto;
+            }
+        }
+        &.is-right-aligned {
+            text-align: right;
+            p {
+                margin: 0 0 0 auto;
+                &::before,
+                &::after {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    p {
+        position: relative;
+        display: block;
+        max-width: rem(960px);
+        font-size: $font-h5;
+        line-height: $heading-height;
+        text-wrap: balance;
+
+        &::before,
+        &::after {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: $font-h4;
+            line-height: 1em;
+        }
+
+        &::before {
+            content: "“";
+            bottom: calc(100% - 2.5rem);
+        }
+
+        &::after {
+            content: "”";
+            top: 100%;
+        }
+    }
+
+    cite {
+        display: block;
+        margin-top: 2.5em;
+        font-family: $font-body;
+        font-size: $font-base-sm;
+        font-style: normal;
+        font-weight: $font-bold;
+        line-height: $heading-height;
+    }
+}
