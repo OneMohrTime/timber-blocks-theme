@@ -1,21 +1,31 @@
 <?php
+/**
+ * The template for displaying the Hero block
+ *
+ * Methods for TimberHelper can be found in the /lib sub-directory
+ *
+ * @package  WordPress
+ * @subpackage  Timber
+ * @since    Timber 0.1
+ */
 
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
+$context = Timber::context();
 
-if ( ! class_exists( 'Timber\Timber' ) ) {
-    echo '<section class="c-block c-hero"><div class="c-block__inner"><h2>' . esc_html( $attributes['title'] ?? 'Hero' ) . '</h2></div></section>';
-    return;
-}
+// Variables
+$image = get_field( 'image' );
 
-$context = [
-    'eyebrow' => $attributes['eyebrow'] ?? 'Featured',
-    'title' => $attributes['title'] ?? 'Hero',
-    'text' => $attributes['text'] ?? '',
-    'buttonLabel' => $attributes['buttonLabel'] ?? 'Learn More',
-    'buttonUrl' => $attributes['buttonUrl'] ?? '#',
-    'media' => ! empty( $attributes['mediaId'] ) ? wp_get_attachment_image( (int) $attributes['mediaId'], 'large' ) : '',
-];
+// Block data
+$context['ID'] = $post_id;
+$context['block'] = $block;
+$context['content'] = $content;
+// $context['attributes'] = $attributes;
+$context['fields'] = get_fields();
 
-Timber\Timber::render( trailingslashit( get_template_directory() ) . 'blocks/hero/views/hero.twig', $context );
+// Block fields
+$context['layout'] = get_field('layout');
+$context['eyebrow'] = get_field('eyebrow');
+$context['headline'] = get_field('headline');
+$context['text'] = get_field('text');
+
+// Render block
+Timber::render( get_template_directory() . '/blocks/hero/views/hero.twig', $context );
