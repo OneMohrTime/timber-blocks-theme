@@ -1,0 +1,22 @@
+{
+  "name": "onemohrtime/hero-banner",
+  "title": "Hero Banner",
+  "category": "design",
+  "icon": "cover-image",
+  "supports": {
+    "align": false,
+    "anchor": true,
+    "autoRegister": true,
+    "className": false,
+    "customClassName": true,
+    "html": false,
+    "multiple": false
+  },
+  "attributes": {},
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "render.php"
+  },
+  "style": "file:../../assets/css/hero-style.css",
+  "textdomain": "onemohrtime"
+}

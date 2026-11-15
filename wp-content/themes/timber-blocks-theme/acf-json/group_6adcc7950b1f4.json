@@ -286,7 +286,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "onemohrtime\/hero"
+                "value": "onemohrtime\/hero-banner"
             }
         ]
     ],
@@ -302,5 +302,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1794713329
+    "modified": 1794720826
 }

@@ -1,0 +1,97 @@
+{# -- Component Variables -- #}
+
+{# {% set var = value %} #}
+
+{# -- Component Template -- #}
+
+{# -- Component Variables -- #}
+
+{% set this = {
+    headline: params.headline|default(post.title),
+    text: params.text|default(null),
+    image: params.image|default(post.thumbnail),
+    video: params.video|default(null),
+    buttons: params.buttons|default(null),
+    type: params.style ?? 'split',
+    orientation: params.orientation|default(null),
+    fontSize: params.textSize ?? 'md',
+    spacing: params.spacing ?? 'md',
+    colorScheme1: params.lightDark ?? 'light',
+    colorScheme2: params.colors ?? 'light',
+} %}
+
+{% if this.fontSize == 'lg' %}
+    {% set headerClass = 'title' %}
+{% elseif this.fontSize == 'sm' %}
+    {% set headerClass = 'subheadline' %}
+{% else %}
+    {% set headerClass = 'headline' %}
+{% endif %}
+
+{# -- Component Template -- #}
+
+<section class="c-banner is-{{ this.type }}{% if this.type != 'video' %} is-{{ this.orientation }}-side{% endif %} u-spacing-{{ this.spacing }}{% if this.type == 'buttons' %} u-color-scheme-{{ this.colorScheme2 }}{% else %} is-{{ this.colorScheme1 }}-text{% endif %}">
+
+    <article class="c-banner__text">
+
+        <h1 class="u-{{ headerClass }}">{{ this.headline }}</h1>
+
+        {% if this.type == 'default' and this.image != empty %}
+            {% if this.text %}
+                <div class="u-lead">{{ this.text }}</div>
+            {% endif %}
+        {% else %}
+            {% if this.text %}
+                <div class="u-wysiwyg">{{ this.text }}</div>
+            {% endif %}
+        {% endif %}
+
+        {# {% if this.type == 'buttons' and this.buttons is not empty %}
+            <div class="c-button-row">
+                {% for button in this.buttons %}
+                    {% include '_elements/button.twig' with {
+                        params: {
+                            url: button.button.url,
+                            text: button.button.title,
+                            target: button.button.target
+                        }
+                    } only %}
+                {% endfor %}
+            </div>
+        {% endif %} #}
+
+        {% if this.buttons %}
+            <div class="c-button-row">
+                {% for button in this.buttons %}
+                    {% include '_elements/button.twig' with {
+                        params: {
+                            url: button.button.url,
+                            text: button.button.title,
+                            target: button.button.target
+                        }
+                    } only %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </article>
+
+    <figure class="c-banner__media">
+        {% if this.type == 'video' %}
+            {% set moviePoster = get_image(this.image) %}
+            <video width="{{ this.video.width }}" height="{{ this.video.height }}" class="c-banner__video" autoplay loop muted poster="{{ moviePoster.src('medium') }}" preload="none">
+                <source src="{{ this.video.url }}" type="{{ this.video.mime_type }}">
+                Your browser does not support the video tag.
+            </video>
+
+        {% else %}
+            {% set renderedImage = get_image(this.image) %}
+            {% include '_elements/picture.twig' with {
+                params: {
+                    src: renderedImage,
+                }
+            } only %}
+
+        {% endif %}
+    </figure>
+
+</section>

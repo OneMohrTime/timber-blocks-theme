@@ -58,10 +58,8 @@ class StarterSite extends Site {
      */
     public function restrict_blocks( $allowed, $editor_context ) {
         return [
-            'onemohrtime/hero',
-            'onemohrtime/split-content',
-            'onemohrtime/feature-grid',
-            'onemohrtime/cta-banner',
+            'onemohrtime/hero-banner',
+            'onemohrtime/hero-slideshow',
             // 'core/heading',
             // 'core/paragraph',
             // 'core/button',
@@ -88,7 +86,8 @@ class StarterSite extends Site {
      */
     public function register_blocks() {
         $block_dirs = [
-            get_template_directory() . '/blocks/hero',
+            get_template_directory() . '/blocks/hero-banner',
+            get_template_directory() . '/blocks/hero-slideshow',
             get_template_directory() . '/blocks/split-content',
             get_template_directory() . '/blocks/feature-grid',
             get_template_directory() . '/blocks/feature-item',
