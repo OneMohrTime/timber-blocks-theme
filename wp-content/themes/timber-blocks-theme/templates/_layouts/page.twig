@@ -19,7 +19,9 @@
 
     <article class="o-page">
 
-        {% include '_components/banner.twig' with {
+        {{ post.content }}
+
+        {# {% include '_components/banner.twig' with {
             params: {
                 headline: headline,
                 text: subheadline,
@@ -70,7 +72,7 @@
 
                 </ul>
             </section>
-        {% endif %}
+        {% endif %} #}
 
     </article>
 
