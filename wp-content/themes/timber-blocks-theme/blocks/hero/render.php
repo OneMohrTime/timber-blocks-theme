@@ -28,4 +28,4 @@ $context['headline'] = get_field('headline');
 $context['text'] = get_field('text');
 
 // Render block
-Timber::render( get_template_directory() . '/blocks/hero/views/hero.twig', $context );
+Timber::render( get_template_directory() . '/blocks/hero/template.twig', $context );

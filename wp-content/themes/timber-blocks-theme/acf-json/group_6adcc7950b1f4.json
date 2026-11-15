@@ -35,9 +35,48 @@
             "save_options": 0
         },
         {
+            "key": "field_6af9235f4edb6",
+            "label": "Block Alignment",
+            "name": "block_alignment",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6af89c079cbd8",
+                        "operator": "==",
+                        "value": "image"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_6af89c079cbd8",
+                        "operator": "==",
+                        "value": "video"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "media-left": "<span class=\"dashicons dashicons-align-pull-left\"><\/span>",
+                "media-right": "<span class=\"dashicons dashicons-align-pull-right\"><\/span>"
+            },
+            "default_value": "media-right",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 1,
+            "layout": "horizontal"
+        },
+        {
             "key": "field_6af8a732f96ff",
-            "label": "Alignment",
-            "name": "alignment",
+            "label": "Text Alignment",
+            "name": "text_alignment",
             "aria-label": "",
             "type": "button_group",
             "instructions": "",
@@ -49,9 +88,9 @@
                 "id": ""
             },
             "choices": {
-                "left": "<span class=\"dashicons dashicons-editor-alignleft\"><\/span>",
-                "center": "<span class=\"dashicons dashicons-editor-aligncenter\"><\/span>",
-                "right": "<span class=\"dashicons dashicons-editor-alignright\"><\/span>"
+                "text-left": "<span class=\"dashicons dashicons-editor-alignleft\"><\/span>",
+                "text-center": "<span class=\"dashicons dashicons-editor-aligncenter\"><\/span>",
+                "text-right": "<span class=\"dashicons dashicons-editor-alignright\"><\/span>"
             },
             "default_value": "left",
             "return_format": "value",
@@ -263,5 +302,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1794680670
+    "modified": 1794713329
 }
