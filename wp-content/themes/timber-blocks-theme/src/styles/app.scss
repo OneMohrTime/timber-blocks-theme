@@ -17,10 +17,10 @@
 /* Custom tools like family, functions, and mixins are included here for reuse throughout the theme. */
 @import "blocks";
 
-@import "helpers/animations";
-@import "helpers/css-variables";
-@import "helpers/helpers";
-@import "helpers/ratio";
+@import "tools/animations";
+@import "tools/css-variables";
+@import "tools/helpers";
+@import "tools/ratio";
 
 /* The 'base' styles provide the fundamental styling for the theme, such as typography and media rules. */
 @import "base/base";

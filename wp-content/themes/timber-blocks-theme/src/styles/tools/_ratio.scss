@@ -15,7 +15,7 @@ $aspect-ratios: (
     (3:4),  // Portrait
     (3:2),  // 35mm film
     (16:9), // HD standard
-    (2:1),  // Universium
+    (2:1),  // Univisium
     (32:9), // Super ultrawide
 ) !default;
 
@@ -36,8 +36,8 @@ $aspect-ratios: (
             @error "`#{$consequent}` needs to be a number."
         }
 
-        .u-#{$antecedent}\:#{$consequent}::before {
-            padding-bottom: math.div($consequent, $antecedent) * 100% !important;
+        .u-#{$antecedent}\:#{$consequent} {
+            aspect-ratio: #{$antecedent} / #{$consequent} !important;
         }
     }
 }
@@ -45,12 +45,7 @@ $aspect-ratios: (
 /* stylelint-enable */
 
 //
-// Create ratio-bound content blocks, to keep media (e.g. images, videos) in
-// their correct aspect ratios.
-//
-// http://alistapart.com/article/creating-intrinsic-ratios-for-video
-//
-// 1. Default cropping is a 1:1 ratio (i.e. a perfect square).
+// Create ratio-bound content blocks, to keep media in its correct aspect ratio.
 //
 
 // Component class
@@ -59,22 +54,16 @@ $aspect-ratios: (
     position: relative;
     display: block;
     overflow: hidden;
-
-    &::before {
-        content: "";
-        display: block;
-        padding-bottom: 100%; /* [1] */
-        width: 100%;
-    }
+    aspect-ratio: 1 / 1;
 }
 
 // Content
 // =============================================================================
 .u-ratio__content,
-.u-ratio > img,
 .u-ratio > iframe,
 .u-ratio > embed,
-.u-ratio > object {
+.u-ratio > object,
+.u-ratio > video {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -83,7 +72,14 @@ $aspect-ratios: (
     height: 100%;
 }
 
-// don't distort the newly-stretched images
+.u-ratio > img,
+.u-ratio > video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .u-ratio img {
     object-fit: cover;
 }
