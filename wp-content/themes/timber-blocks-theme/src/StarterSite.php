@@ -106,12 +106,12 @@ class StarterSite extends Site {
      */
     public function load_scripts() {
         // Main "screen" stylesheet
-        $theme_css = get_template_directory() . '/assets/css/app.css';
+        $theme_css = get_template_directory() . '/assets/css/app-style.css';
         // Main script file
         $theme_js  = get_template_directory() . '/assets/js/app.js';
 
         if ( file_exists( $theme_css ) ) {
-            wp_enqueue_style( 'main', get_template_directory_uri() . '/assets/css/app.css', [], filemtime( $theme_css ), 'screen' );
+            wp_enqueue_style( 'main', get_template_directory_uri() . '/assets/css/app-style.css', [], filemtime( $theme_css ), 'screen' );
         }
 
         if ( file_exists( $theme_js ) ) {
