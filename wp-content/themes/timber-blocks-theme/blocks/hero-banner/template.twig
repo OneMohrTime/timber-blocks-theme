@@ -9,7 +9,7 @@
 {% set this = {
     headline: params.headline|default(post.title),
     text: params.text|default(null),
-    image: params.image|default(post.thumbnail),
+    image: image|default(params.image)|default(post.thumbnail),
     video: params.video|default(null),
     buttons: params.buttons|default(null),
     type: params.style ?? 'split',
@@ -36,7 +36,7 @@
 
         <h1 class="u-{{ headerClass }}">{{ this.headline }}</h1>
 
-        {% if this.type == 'default' and this.image != empty %}
+        {% if this.type == 'default' and image != empty %}
             {% if this.text %}
                 <div class="u-lead">{{ this.text }}</div>
             {% endif %}
@@ -45,20 +45,6 @@
                 <div class="u-wysiwyg">{{ this.text }}</div>
             {% endif %}
         {% endif %}
-
-        {# {% if this.type == 'buttons' and this.buttons is not empty %}
-            <div class="c-button-row">
-                {% for button in this.buttons %}
-                    {% include '_elements/button.twig' with {
-                        params: {
-                            url: button.button.url,
-                            text: button.button.title,
-                            target: button.button.target
-                        }
-                    } only %}
-                {% endfor %}
-            </div>
-        {% endif %} #}
 
         {% if this.buttons %}
             <div class="c-button-row">
@@ -76,22 +62,29 @@
     </article>
 
     <figure class="c-banner__media">
-        {% if this.type == 'video' %}
+        {# {% if this.type == 'video' %}
             {% set moviePoster = get_image(this.image) %}
             <video width="{{ this.video.width }}" height="{{ this.video.height }}" class="c-banner__video" autoplay loop muted poster="{{ moviePoster.src('medium') }}" preload="none">
                 <source src="{{ this.video.url }}" type="{{ this.video.mime_type }}">
                 Your browser does not support the video tag.
             </video>
 
-        {% else %}
-            {% set renderedImage = get_image(this.image) %}
+        {% else %} #}
+        <pre>{{ dump(image) }}</pre>
+
             {% include '_elements/picture.twig' with {
                 params: {
-                    src: renderedImage,
+                    src: image.src|default(null),
+                    srcset: image.srcset|default(''),
+                    sizes: image.sizes|default(null),
+                    width: image.width|default(null),
+                    height: image.height|default(null),
+                    alt: image.alt|default(null),
+                    webp: image.webp|default(null),
                 }
             } only %}
 
-        {% endif %}
+        {# {% endif %} #}
     </figure>
 
 </section>

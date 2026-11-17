@@ -1,62 +1,60 @@
 {# -- Component Variables -- #}
 
-{% set this = {
-    src: params.src|default(null),
-    alt: params.alt|default(null),
+{% set options = {
     ratio: params.ratio ?? null,
     attr: params.attr ?? null,
-    sizes: params.sizes ?? '100vw',
     lazy: lazyload ?? true,
     classes: classes ?? null,
+    sizes: params.sizes|default('100vw'),
 } %}
 
 {# -- Component Template -- #}
 
-{% if this.src %}
-
-{# Convert to TimberImage #}
-{% set renderedImage = get_image(this.src) %}
-{% set renderedAltText = this.alt ?? renderedImage.alt %}
+{% if params.src %}
 
 {# Frame can be set to relative/absolute image ratio-ing #}
 <picture class="c-media
     {# Custom ratio #}
-    {% if this.ratio %}u-ratio u-{{ this.ratio }}{% endif %}"
+    {% if options.ratio %}u-ratio u-{{ options.ratio }}{% endif %}"
     {# Custom data-attributes #}
-    {% if this.attr %}{{ this.attr }}{% endif %}
+    {% if options.attr %}{{ options.attr }}{% endif %}
 >
 
     {# img tag for browsers that do not support picture element #}
-    <img src="{{ renderedImage.src('thumbnail') }}"
+    {% if params.webp %}
+        <source type="image/webp" srcset="{{ params.webp }}" sizes="{% if options.lazy %}auto, {% endif %}{{ options.sizes }}">
+    {% endif %}
+
+    <img src="{{ params.src }}"
 
         {# Alt text should never be empty, or contain tags, or be too long #}
-        alt="{{ renderedAltText }}"
+        alt="{{ params.alt|default('') }}"
 
         {# Semantic HTML width & height values #}
-        width="{{ renderedImage.sizes.thumbnail.width }}"
-        height="{{ renderedImage.sizes.thumbnail.height }}"
+        {% if params.width %}width="{{ params.width }}"{% endif %}
+        {% if params.height %}height="{{ params.height }}"{% endif %}
 
         {# Default class #}
         class="c-media__image
 
         {# Additional custom classes #}
-        {% if this.classes %}{{ this.classes|trim }}{% endif %}"
+        {% if options.classes %}{{ options.classes|trim }}{% endif %}"
 
         {# Media query sizes #}
-        sizes="{{ this.sizes }}"
+        sizes="{% if options.lazy %}auto, {% endif %}{{ options.sizes }}"
 
         {# Optimized image sizes #}
-        srcset="{{ renderedImage.srcset }}"
+        {% if params.srcset %}srcset="{{ params.srcset }}"{% endif %}
 
         {# Lazyloaded by default #}
-        {% if this.lazy %}loading="lazy" decoding="async"{% endif %}
+        {% if options.lazy %}loading="lazy" decoding="async"{% endif %}
     />
 
 </picture>
 
 {% else %}
 <picture class="c-media">
-    <img src="https://timber-wordpress.ddev.site/wp-content/uploads/placeholder.jpg" alt="placeholder image" class="c-media__image" loading="lazy" />
+    <img src="https://timber-blocks.ddev.site/wp-content/uploads/placeholder.jpg" alt="placeholder image" class="c-media__image" loading="lazy" />
 </picture>
 
 {% endif %}

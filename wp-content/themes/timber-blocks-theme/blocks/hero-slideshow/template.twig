@@ -84,10 +84,15 @@
             </video>
 
         {% else %}
-            {% set renderedImage = get_image(this.image) %}
             {% include '_elements/picture.twig' with {
                 params: {
-                    src: renderedImage,
+                    src: image.src|default(null),
+                    srcset: image.srcset|default(''),
+                    sizes: image.sizes|default(null),
+                    width: image.width|default(null),
+                    height: image.height|default(null),
+                    alt: image.alt|default(null),
+                    webp: image.webp|default(null),
                 }
             } only %}
 
