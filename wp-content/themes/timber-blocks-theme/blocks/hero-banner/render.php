@@ -15,13 +15,15 @@ $context = Timber::context();
 $image = get_field('image');
 $image_id = is_array($image) ? absint($image['ID'] ?? 0) : absint($image);
 $image_src = $image_id ? wp_get_attachment_image_src($image_id, 'large') : false;
+$image_srcset = $image_id ? wp_get_attachment_image_srcset($image_id, 'medium') : false;
+$image_mime_type = $image_id ? get_post_mime_type($image_id) : false;
 
 // Block data
 $context['ID'] = $post_id;
 $context['block'] = $block;
 $context['content'] = $content;
-// $context['attributes'] = $attributes;
-$context['fields'] = get_fields();
+// $context['attributes'] = $attributes; // Use for debugging
+// $context['fields'] = get_fields(); // Use for debugging
 
 // Block fields
 $context['layout'] = get_field('layout');
@@ -34,9 +36,10 @@ $context['image'] = $image_src ? [
     'src' => $image_src[0],
     'width' => $image_src[1],
     'height' => $image_src[2],
-    'srcset' => wp_get_attachment_image_srcset($image_id, 'medium') ?: '',
+    'srcset' => $image_srcset ?: '',
     'sizes' => wp_get_attachment_image_sizes($image_id, 'medium') ?: '',
     'alt' => get_post_meta($image_id, '_wp_attachment_image_alt', true),
+    'webp' => $image_mime_type === 'image/webp' ? ($image_srcset ?: $image_src[0]) : null,
 ] : null;
 $context['video'] = get_field('video');
 $context['buttons'] = get_field('buttons');
