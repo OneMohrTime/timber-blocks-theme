@@ -92,7 +92,7 @@
                 "text-center": "<span class=\"dashicons dashicons-editor-aligncenter\"><\/span>",
                 "text-right": "<span class=\"dashicons dashicons-editor-alignright\"><\/span>"
             },
-            "default_value": "left",
+            "default_value": "text-left",
             "return_format": "value",
             "allow_null": 0,
             "allow_in_bindings": 1,
@@ -339,7 +339,7 @@
                 "2:1": "Univisium (2:1)",
                 "32:9": "Super ultrawide (32:9)"
             },
-            "default_value": "3:4",
+            "default_value": "16:9",
             "return_format": "value",
             "multiple": 0,
             "allow_null": 0,
@@ -451,5 +451,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1795022743
+    "modified": 1795025611
 }
