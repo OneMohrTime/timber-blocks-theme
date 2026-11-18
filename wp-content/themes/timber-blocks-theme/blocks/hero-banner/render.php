@@ -31,6 +31,7 @@ $context['blockAlign'] = get_field('block_alignment');
 $context['textAlign'] = get_field('text_alignment');
 $context['eyebrow'] = get_field('eyebrow');
 $context['headline'] = get_field('headline');
+$context['subheadline'] = get_field('subheadline');
 $context['text'] = get_field('text');
 $context['image'] = $image_src ? [
     'src' => $image_src[0],
@@ -42,6 +43,9 @@ $context['image'] = $image_src ? [
     'webp' => $image_mime_type === 'image/webp' ? ($image_srcset ?: $image_src[0]) : null,
 ] : null;
 $context['video'] = get_field('video');
+$context['videoThumb'] = get_field('video_thumbnail');
+$context['aspectRatio'] = get_field('aspect_ratio');
+$context['overlay'] = get_field('overlay');
 $context['buttons'] = get_field('buttons');
 
 // Render block

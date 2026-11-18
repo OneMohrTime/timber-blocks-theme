@@ -17,6 +17,6 @@
     "mode": "preview",
     "renderTemplate": "render.php"
   },
-  "style": "file:../../assets/css/hero-style.css",
+  "style": "file:../../assets/css/hero-banner-style.css",
   "textdomain": "onemohrtime"
 }

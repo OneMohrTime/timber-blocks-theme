@@ -5,97 +5,59 @@
 @use "../../src/styles/blocks" as *;
 @use "sass:color";
 
-.c-banner--builder {
+.c-banner {
     @include padding();
     position: relative;
-    margin-bottom: 0;
 
-    &.is-light-text {
-        color: var(--color-white);
-        text-shadow: rem(1px) rem(1px) rem(20px) color.adjust($black, $alpha: -0.5);
-
-        .c-button {
-            @include btn-color($white, $black, $blue);
-            text-shadow: none;
-        }
-    }
-
-    &.is-dark-text {
-        color: var(--color-black);
-
-        .c-button {
-            @include btn-color($black, $white, $blue);
+    &.is-none {
+        .c-banner__media {
+            display: none;
         }
     }
 
     // screen at or above 900px
     @include media(">=medium") {
-        margin-bottom: 0;
-    }
-
-    // Elements
-    .u-title,
-    .u-headline,
-    .u-subheadline {
-        margin-bottom: 0.25em;
-    }
-
-    .u-wysiwyg {
-        margin-bottom: $base-spacing;
-    }
-
-    .c-button-row {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 1em;
-    }
-
-    .c-button {
-        margin: 0;
+        &.u-media-right {
+            flex-direction: row;
+        }
+        &.u-media-left {
+            flex-direction: row-reverse;
+        }
     }
 }
 
 /**
- * === OVERSIZED IMAGE ===
+ * === BACKGROUND IMAGE & VIDEO LAYOUT ===
  */
 
-.c-banner--builder.is-default {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    min-height: 400px;
+.c-banner.is-bg-image,
+.c-banner.is-bg-video {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    overflow: hidden;
+    background-color: $black;
+    z-index: 1;
+
+    .c-banner__text {
+        @include padding();
+        padding-top: $gutter;
+        padding-bottom: $gutter;
+        color: $white;
+    }
 
     .c-banner__media {
         position: absolute;
         top: 0;
         left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
     }
 
-    .u-lead {
-        margin-bottom: $base-spacing;
-    }
-
-    // screen at or above 600px
-    @include media(">=small") {
-        min-height: 500px;
-    }
-
-    // screen at or above 900px
-    @include media(">=medium") {
-        min-height: 600px;
-
-        .c-banner__text {
-            max-width: rem(800px);
-        }
-    }
-
-    // screen at or above 1200px
-    @include media(">=large") {
-        min-height: calc(100vh - rem(95px));
+    .c-banner__video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 }
 
@@ -103,60 +65,71 @@
  * === SPLIT LAYOUT ===
  */
 
-.c-banner--builder.is-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: $gutter;
+.c-banner.is-image,
+.c-banner.is-video {
+
+    .c-banner__text {
+        margin-bottom: $gutter-sm;
+    }
 
     // screen at or above 900px
     @include media(">=medium") {
+        display: flex;
+        justify-content: space-between;
         align-items: center;
-
-        &.is-left-side {
-            flex-direction: row-reverse;
-        }
-        &.is-right-side {
-            flex-direction: row;
-        }
 
         .c-banner__text,
         .c-banner__media {
             flex: 0 1 50%;
+            max-width: calc(50% - $gutter-sm);
+        }
+
+        .c-banner__text {
+            margin-bottom: 0;
         }
     }
 }
 
 /**
- * === VIDEO ===
+ * === BANNER TEXT ===
  */
 
-.c-banner--builder.is-video {
-    padding-left: 0;
-    padding-right: 0;
-    z-index: 1;
-
-    .c-banner__text {
-        @include padding();
-        position: relative;
-        z-index: 2;
+.c-banner__text {
+    // & > *:not(:last-child) {
+    //     margin-bottom: $small-spacing;
+    // }
+    .u-eyebrow {
+        margin-bottom: $base-spacing;
     }
-
-    .c-banner__media,
-    .c-banner__video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        transform: translateY(0);
-        z-index: -1;
+    .u-title {
+        margin-bottom: 0;
+        & + .u-subheadline {
+            margin-top: $small-spacing;
+        }
+    }
+    .u-wysiwyg {
+        @include fluid-body-copy();
+        margin-top: $small-spacing;
+    }
+    .c-button-row {
+        margin-top: $base-spacing;
     }
 }
 
 /**
- * === INTRO ===
+ * === BANNER MEDIA ===
  */
 
-.c-banner--builder.is-buttons + .c-intro {
-    padding-top: 0 !important;
+.c-banner__media {
+
+    .c-media__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
 }
+
+// .c-banner--builder.is-buttons + .c-intro {
+//     padding-top: 0 !important;
+// }

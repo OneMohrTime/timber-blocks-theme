@@ -1,54 +1,37 @@
 {# -- Component Variables -- #}
 
-{# {% set var = value %} #}
-
-{# -- Component Template -- #}
-
-{# -- Component Variables -- #}
-
-{% set this = {
-    headline: params.headline|default(post.title),
-    text: params.text|default(null),
-    image: image|default(params.image)|default(post.thumbnail),
-    video: params.video|default(null),
-    buttons: params.buttons|default(null),
-    type: params.style ?? 'split',
-    orientation: params.orientation|default(null),
-    fontSize: params.textSize ?? 'md',
-    spacing: params.spacing ?? 'md',
-    colorScheme1: params.lightDark ?? 'light',
-    colorScheme2: params.colors ?? 'light',
+{% set section = {
+    layout: layout|default('bg-image'),
+    headline: headline|default(post.title),
+    image: image|default(post.thumbnail),
+    video: params.video|default(null)
 } %}
 
-{% if this.fontSize == 'lg' %}
-    {% set headerClass = 'title' %}
-{% elseif this.fontSize == 'sm' %}
-    {% set headerClass = 'subheadline' %}
-{% else %}
-    {% set headerClass = 'headline' %}
-{% endif %}
-
 {# -- Component Template -- #}
 
-<section class="c-banner is-{{ this.type }}{% if this.type != 'video' %} is-{{ this.orientation }}-side{% endif %} u-spacing-{{ this.spacing }}{% if this.type == 'buttons' %} u-color-scheme-{{ this.colorScheme2 }}{% else %} is-{{ this.colorScheme1 }}-text{% endif %}">
+<section class="c-banner is-{{ section.layout }}{{ blockAlign is not empty and section.layout in ['image', 'video'] ? ' u-' ~ blockAlign : '' }}">
 
-    <article class="c-banner__text">
+    <article class="c-banner__text{{ textAlign ? ' u-' ~ textAlign : '' }}">
 
-        <h1 class="u-{{ headerClass }}">{{ this.headline }}</h1>
-
-        {% if this.type == 'default' and image != empty %}
-            {% if this.text %}
-                <div class="u-lead">{{ this.text }}</div>
-            {% endif %}
-        {% else %}
-            {% if this.text %}
-                <div class="u-wysiwyg">{{ this.text }}</div>
-            {% endif %}
+        {% if eyebrow %}
+            <strong class="u-eyebrow">{{ eyebrow }}</strong>
         {% endif %}
 
-        {% if this.buttons %}
+        <h1 class="u-title">{{ section.headline }}</h1>
+
+        {% if subheadline %}
+            <h2 class="u-lead">{{ subheadline }}</h2>
+        {% endif %}
+
+        {% if text %}
+            <div class="u-wysiwyg">
+                {{ text }}
+            </div>
+        {% endif %}
+
+        {% if buttons %}
             <div class="c-button-row">
-                {% for button in this.buttons %}
+                {% for button in buttons %}
                     {% include '_elements/button.twig' with {
                         params: {
                             url: button.button.url,
@@ -61,30 +44,32 @@
         {% endif %}
     </article>
 
-    <figure class="c-banner__media">
-        {# {% if this.type == 'video' %}
-            {% set moviePoster = get_image(this.image) %}
-            <video width="{{ this.video.width }}" height="{{ this.video.height }}" class="c-banner__video" autoplay loop muted poster="{{ moviePoster.src('medium') }}" preload="none">
-                <source src="{{ this.video.url }}" type="{{ this.video.mime_type }}">
+    <figure class="c-banner__media{{ section.layout in ['image', 'video'] and aspectRatio is not empty and aspectRatio != 'none' ? ' u-ratio u-' ~ aspectRatio : '' }}"{% if section.layout in ['bg-image', 'bg-video'] %} style="opacity: {{ (100 - overlay) / 100 }}"{% endif %}>
+
+        {% if section.layout in ['video', 'bg-video'] %}
+            {% set moviePoster = videoThumb|default(post.thumbnail) %}
+            <video width="{{ video.width }}" height="{{ video.height }}" class="c-banner__video" autoplay loop muted poster="{{ moviePoster.src('large') }}" preload="auto">
+                <source src="{{ video.url }}" type="{{ video.mime_type }}">
                 Your browser does not support the video tag.
             </video>
 
-        {% else %} #}
-        <pre>{{ dump(image) }}</pre>
+        {% elseif section.layout in ['image', 'bg-image'] %}
 
             {% include '_elements/picture.twig' with {
                 params: {
-                    src: image.src|default(null),
-                    srcset: image.srcset|default(''),
-                    sizes: image.sizes|default(null),
-                    width: image.width|default(null),
-                    height: image.height|default(null),
-                    alt: image.alt|default(null),
-                    webp: image.webp|default(null),
-                }
+                    src: section.image.src|default(null),
+                    srcset: section.image.srcset|default(''),
+                    sizes: section.image.sizes|default(null),
+                    width: section.image.width|default(null),
+                    height: section.image.height|default(null),
+                    alt: section.image.alt|default(null),
+                    webp: section.image.webp|default(null)
+                },
+                classes: 'c-media__image',
             } only %}
 
-        {# {% endif %} #}
+        {% endif %}
+
     </figure>
 
 </section>
