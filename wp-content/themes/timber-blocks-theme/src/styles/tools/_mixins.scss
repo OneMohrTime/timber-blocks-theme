@@ -208,9 +208,6 @@
     }
 }
 
-//
-// Set basic section padding from mobile to desktop
-//
 @mixin padding() {
     padding-left: $gutter-sm;
     padding-right: $gutter-sm;
@@ -270,40 +267,6 @@
     }
 }
 
-@mixin hide-visually($toggle: "hide") {
-    @if not index("hide" "unhide", $toggle) {
-        @error "`#{$toggle}` is not a valid value for the `$toggle` argument in " +
-            "the `hide-visually` mixin. Must be either `hide` or `unhide`.";
-    } @else if $toggle == "hide" {
-        border: 0;
-        clip: rect(1px, 1px, 1px, 1px);
-        clip-path: inset(100%);
-        height: 1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        white-space: nowrap;
-        width: 1px;
-    } @else if $toggle == "unhide" {
-        clip: auto;
-        clip-path: none;
-        height: auto;
-        overflow: visible;
-        position: static;
-        white-space: inherit;
-        width: auto;
-    }
-    // @example scss
-    //   .element {
-    //     @include hide-visually;
-    //
-    //     &:active,
-    //     &:focus {
-    //       @include hide-visually("unhide");
-    //     }
-    //   }
-}
-
 /**
 * === TOOLS ===
 */
@@ -327,6 +290,22 @@
     }
 }
 
+@mixin underlined() {
+    position: relative;
+    margin-bottom: 0.25em;
+    padding-bottom: 0.25em;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: $border-width;
+        background-color: $gray--lightest;
+    }
+}
+
 @mixin text-shadow() {
     text-shadow: 2px 2px 4px color.adjust($black, $alpha: -0.95);
 }
@@ -340,8 +319,8 @@
 }
 
 /**
-* === TYPE STYLES ===
-*/
+ * === TYPE MIXINS ===
+ */
 
 @mixin type() {
     font-family: inherit;
@@ -357,12 +336,11 @@
 
 @mixin title($underline: null) {
     font-size: $font-h1;
-    letter-spacing: -1.5px;
 
+    // screen below 599px
     @include media("<small") {
         font-size: $font-h2;
         font-size: 2.5em;
-        letter-spacing: normal;
         hyphens: auto;
         word-break: break-word;
     }
@@ -372,13 +350,12 @@
     }
 }
 
-@mixin subtitle($underline: null) {
+@mixin headline($underline: null) {
     font-size: $font-h2;
-    letter-spacing: -0.5px;
 
+    // screen below 599px
     @include media("<small") {
         font-size: 2.25em;
-        letter-spacing: normal;
         hyphens: auto;
     }
 
@@ -387,11 +364,25 @@
     }
 }
 
-@mixin paragraph($underline: null) {
+@mixin subheadline($underline: null) {
     font-size: $font-h3;
 
+    // screen below 599px
     @include media("<=small") {
         font-size: 2em;
+    }
+
+    @if $underline == "underlined" {
+        @include underlined();
+    }
+}
+
+@mixin heading($underline: null) {
+    font-size: $font-h4;
+
+    // screen below 599px
+    @include media("<=small") {
+        font-size: 1.75em;
     }
 
     @if $underline == "underlined" {
@@ -402,8 +393,9 @@
 @mixin lead($underline: null) {
     font-size: $font-h5;
 
+    // screen below 599px
     @include media("<=small") {
-        font-size: 1.25em;
+        font-size: 1.5em;
     }
 
     @if $underline == "underlined" {
@@ -420,25 +412,12 @@
     }
 }
 
-@mixin base-font-size() {
-    // font-size: 1.181vw;
-    font-size: clamp(100%, 1rem + 1vw, 1.33em);
-    font-size: 1rem;
+@mixin fluid-body-copy($min: $font-base-sm, $max: $font-base-lg) {
+    font-size: clamp($min, 0.75rem + 1vw, $max);
 }
 
-@mixin small-font-size() {
-    font-size: clamp(75%, 1rem + 1vw, 1em);
-    font-size: 0.875rem;
-}
-
-@mixin smaller-font-size() {
-    font-size: clamp(75%, 1rem + 1vw, 1em);
-    font-size: 0.875rem;
-}
-
-@mixin smallest-font-size() {
-    font-size: clamp(62.5%, 1rem + 1vw, 0.75em);
-    font-size: 0.75rem;
+@mixin fluid-large-copy($min: $font-base-lg, $max: $font-h6) {
+    font-size: clamp($min, 0.75rem + 1vw, $max);
 }
 
 @mixin label() {
@@ -451,82 +430,91 @@
 }
 
 @mixin caption() {
-    margin: 0;
-    // font-size: 1.15vw;
     font-size: 0.875em;
     font-family: $font-header;
     font-weight: 700;
     line-height: 1em;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: rem(2px);
 }
 
-@mixin underlined() {
-    position: relative;
-    padding-bottom: calc(.5em + 1px);
-    margin-bottom: .5em;
-
-    &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: 1px;
-        background-color: $black--lightest;
+@mixin drop-cap() {
+    &:first-letter {
+        margin: 0 0.25em 0 0;
+        float: left;
+        font-family: $font-header;
+        font-size: 3.25em;
+        // font-size: 3.375em;
+        // font-size: 2em;
+        font-size: 5.5em;
+        line-height: 0.9em;
+        color: inherit;
     }
 }
 
 /**
-* === BUTTONS AND LINKS ===
-*/
+ * === BUTTONS AND LINKS ===
+ */
 
-@mixin inline-block($underline: false, $color: inherit, $display: inline-block) {
-    display: $display;
-    position: relative;
-    transition: color $speed $bezier-slide;
-    text-decoration: none !important;
-    color: $color;
+@mixin btn-style($bg: $black, $text: $white, $hover: $blue) {
+    padding: rem(15px) rem(25px);
+    font-family: $font-body;
+    font-size: $font-base-sm;
+    font-weight: $font-heavy;
+    line-height: $heading-height;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: 0;
+    border-radius: $border-radius;
+    background-color: $bg;
+    color: $text;
     cursor: pointer;
 
-    // Faux underline
-    &::after {
-        content: "";
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        width: 0;
-        height: 1px;
-        transition: width $speed linear;
-        background-color: currentColor;
-        background-color: $pink;
-        z-index: 2;
+    @include media(">=small") {
+        transition: background $speed $bezier-slide,
+                    color $speed $bezier-slide;
     }
 
-    @if $underline {
-        // Faux underline, faded
-        &::before {
-            content: "";
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            width: 100%;
-            height: 1px;
-            background-color: $gray;
-            z-index: 1;
-        }
-    }
-
-    // Hover, focus
+    // hover, focus
     @include hocus {
-        color: $color;
+        background-color: $hover;
+        color: $text;
+    }
 
-        // Faux underline
-        &::after {
-            left: 0;
-            right: auto;
-            width: 100%;
+    &:active {
+        background-color: $gray--darkest !important;
+        color: $white--darkest !important;
+    }
+
+    // disabled buttons
+    &:disabled {
+        opacity: 1;
+        border-color: $gray;
+        background-color: transparent;
+        color: $gray;
+        cursor: not-allowed !important;
+        // hover, focus
+        @include hocus {
+            background-color: $white--dark;
+            color: $gray;
+            &::after {
+                display: none;
+            }
         }
+    }
+}
+
+@mixin btn-color($bg: $black--lighter, $text: $black, $hover: $white) {
+    color: $text;
+    .c-button__icon {
+        color: $hover;
+    }
+    &::before {
+        background-color: $bg;
+    }
+    &:hover {
+        color: $hover;
     }
 }
 
@@ -548,20 +536,45 @@
         transition: border $speed;
         &:hover,
         &:focus {
-            border-color: color.adjust($yellow, $alpha: -0.15);
+            border-color: fade-out($yellow, 0.15);
         }
     } @else {
         // nothing, continue on
     }
 }
 
-@mixin btn-color($btnColor: $black, $btnText: $white, $btnHover: $yellow) {
-    background-color: $btnColor;
-    color: $btnText;
+@mixin underline-link() {
+    border-bottom: 3px $black solid;
+    font-weight: 700;
+    padding-left: $small-spacing;
+    padding-right: $small-spacing;
+    padding-bottom: .25em;
+}
+
+//
+// Link hover animation that highlights behind the anchor
+//
+@mixin highlight-link($background: $gray--lightest, $color: inherit) {
+    position: relative;
+    text-decoration: none;
+    color: $color;
+
+    &::before {
+        content: "";
+        position: absolute;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.5s ease-in-out;
+        background-color: $background;
+        inset: 0;
+        z-index: -1;
+    }
 
     @include hocus {
-        background-color: $btnHover;
-        color: $btnText;
+        &::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
     }
 }
 
@@ -574,7 +587,7 @@
     transition: background-size $speed-slow $bezier-slide;
     background: linear-gradient(0deg, $color, $color) no-repeat right bottom / 0 var(--bg-height);
     color: inherit;
-    line-height: $heading-height;
+    line-height: 1em;
 
     &:where(:hover, :focus-visible) {
         background-size: 100% var(--bg-height);
@@ -583,10 +596,68 @@
 
     // If underline or background
     @if $underline {
-        --bg-height: 1px;
-        padding-bottom: 1px;
+        --bg-height: 2px;
+        padding-bottom: 2px;
 
     } @else {
         --bg-height: 100%;
+    }
+}
+
+//
+// Link hover animation that spans multiple lines
+//
+@mixin inline-link($underline: false, $color: inherit, $display: inline-block) {
+    display: $display;
+    position: relative;
+    transition: color $speed $bezier-slide;
+    text-decoration: none !important;
+    color: $color;
+    cursor: pointer;
+
+    &:focus {
+        border-radius: $border-radius-sm;
+        outline: $focus-outline;
+        outline-offset: $focus-offset;
+    }
+
+    // Faux underline
+    &::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 0;
+        height: 1px;
+        transition: width $speed linear;
+        background-color: currentColor;
+        background-color: $black;
+        z-index: 2;
+    }
+
+    @if $underline {
+        // Faux underline, faded
+        &::before {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background-color: $white--darkest;
+            z-index: 1;
+        }
+    }
+
+    // Hover, focus
+    @include hocus {
+        color: $color;
+
+        // Faux underline
+        &::after {
+            left: 0;
+            right: auto;
+            width: 100%;
+        }
     }
 }

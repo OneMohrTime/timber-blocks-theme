@@ -24,7 +24,7 @@ a {
         // but is a child of .-wysiwyg
         .u-wysiwyg &{
             // stylize as inline link
-            @include inline-block(true);
+            @include inline-link(true);
         }
     }
 }

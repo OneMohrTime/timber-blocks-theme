@@ -3,9 +3,9 @@
 ========================================================================== */
 
 button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
+[type="button"],
+[type="reset"],
+[type="submit"] {
     position: relative;
     display: inline-block;
     background-color: transparent;
@@ -25,83 +25,15 @@ button,
     }
 }
 
-button:focus,
-[type='button']:focus,
-[type='reset']:focus,
-[type='submit']:focus {
-    outline-color: color.adjust($blue, $alpha: -0.4);
-}
-
-button:hover,
-[type='button']:hover,
-[type='reset']:hover,
-[type='submit']:hover {
-    background-color: transparent;
-    color: inherit;
-}
-
 /**
-* === BUTTON MIXIN ===
-*/
-
-@mixin btn-style($bg: $black, $text: $white, $hover: $blue) {
-    padding: rem(15px) rem(25px);
-    font-family: $font-body;
-    font-size: $font-base-sm;
-    font-weight: $font-heavy;
-    line-height: $heading-height;
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    border: 0;
-    border-radius: rem(50px);
-    background-color: $bg;
-    color: $text;
-    cursor: pointer;
-
-    @include media(">=small") {
-        transition: background $speed $bezier-slide,
-                    color $speed $bezier-slide;
-    }
-
-    // hover, focus
-    @include hocus {
-        background-color: $hover;
-        color: $text;
-    }
-
-    &:active {
-        background-color: $gray--darkest !important;
-        color: $white--darkest !important;
-    }
-
-    // disabled buttons
-    &:disabled {
-        opacity: 1;
-        border-color: $gray;
-        background-color: transparent;
-        color: $gray;
-        cursor: not-allowed !important;
-        // hover, focus
-        @include hocus {
-            background-color: $white--dark;
-            color: $gray;
-            &::after {
-                display: none;
-            }
-        }
-    }
-}
-
-/**
-* === Button Class ===
+* === BUTTON CLASS ===
 */
 .c-button {
     @include btn-style();
 
-    &.is-primary {
-        background-color: $pink;
-        color: $white;
+    &:focus {
+        outline: $focus-outline;
+        outline-offset: $focus-offset;
     }
 
     &:has(.c-button__icon) {
@@ -147,4 +79,27 @@ button:hover,
 
 .c-button--small {
     padding: rem(8px) rem(14px);
+}
+
+/**
+ * === BUTTON GROUPS ===
+ */
+
+.c-button-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $base-spacing;
+
+    .u-text-left & {
+        justify-content: flex-start;
+    }
+
+    .u-text-center & {
+        justify-content: center;
+    }
+
+    .u-text-right & {
+        justify-content: flex-end;
+    }
 }

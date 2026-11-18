@@ -3,9 +3,9 @@
 {% set options = {
     ratio: params.ratio ?? null,
     attr: params.attr ?? null,
-    lazy: lazyload ?? true,
-    classes: classes ?? null,
     sizes: params.sizes|default('100vw'),
+    lazy: lazyload ?? true,
+    classes: classes ?? null
 } %}
 
 {# -- Component Template -- #}

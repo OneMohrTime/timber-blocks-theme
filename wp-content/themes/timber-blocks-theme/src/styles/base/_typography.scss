@@ -2,12 +2,6 @@
     Typography
 ========================================================================== */
 
-::selection {
-    color: $white;
-    background-color: $blue;
-    text-shadow: none;
-}
-
 /**
  * === HEADINGS ===
  */
@@ -16,16 +10,12 @@
     h#{$i} {
         position: relative;
         display: block;
-        margin: 0 0 .5em;
+        margin: 0;
         font-family: $font-header;
         font-weight: $font-regular;
         text-transform: none;
         line-height: $heading-height;
         color: inherit;
-
-        @include first(1) {
-            margin-top: 0;
-        }
 
         a {
             line-height: inherit;
@@ -60,44 +50,28 @@ h6 {
 }
 
 .u-wysiwyg {
-    font-weight: normal;
+    // @include content-width();
     line-height: $line-height;
 
-    &.u-matching-headlines {
-        h1, h2, h3, h4, h5, h6 {
-            margin-bottom: $small-spacing !important;
-            font-size: $font-h5;
-
-            // screen at or above 600px
-            @include media(">=small") {
-                font-size: $font-h3;
-            }
-        }
-    }
-
-    .read-more {
-        display: none !important;
-    }
-
     h1, h2, h3, h4, h5, h6 {
+        display: block;
+        margin-bottom: $small-spacing;
+
         // headers in a wysiwyg section only...hopefully
         &:not([class]) {
-            margin-bottom: math.div($line-height, 2);
-            margin-bottom: $base-spacing;
+            margin-bottom: $small-spacing;
         }
         // remove top margin for first heading in sections
         &:not([class]):not(:first-child) {
-            margin-top: math.div($line-height, 2);
+            margin-top: $small-spacing;
         }
     }
 
     p, ul, ol {
         line-height: inherit;
-        & + p,
-        & + ul,
-        & + ol,
-        & + .c-button {
-            margin-top: $line-height;
+
+        & + p, ul, ol, a {
+            margin-top: math.div($line-height, 2);
         }
     }
 }
@@ -116,7 +90,7 @@ p {
 }
 
 b, strong {
-    font-weight: 600;
+    font-weight: $font-bold;
 }
 
 sub, sup {
@@ -179,70 +153,62 @@ ul, ol, dl {
 .u-title {
     @include title();
 
-    &.is-underline {
+    &.is-underlined {
         @include title("underlined");
     }
 }
 
 .u-headline {
-    @include subtitle();
+    @include headline();
 
-    &.is-underline {
-        @include subtitle("underlined");
+    &.is-underlined {
+        @include headline("underlined");
     }
 }
 
 .u-subheadline {
-    @include paragraph();
+    @include subheadline();
 
-    &.is-underline {
-        @include paragraph("underlined");
+    &.is-underlined {
+        @include subheadline("underlined");
     }
 }
 
 .u-heading {
-    font-size: $font-h4;
+    @include heading();
+
+    &.is-underlined {
+        @include heading("underlined");
+    }
 }
 
 .u-lead {
     @include lead();
+
+    &.is-underlined {
+        @include lead("underlined");
+    }
 }
 
 .u-eyebrow {
-    position: relative;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: $gutter-lg;
     font-size: $font-base-sm;
     font-weight: $font-bold;
-    text-align: center;
     text-transform: uppercase;
-    letter-spacing: 0.667em;
+    letter-spacing: rem(2px);
     line-height: $heading-height;
-
-    &::after {
-        content: url("https://colossianforum.org/wp-content/uploads/eyebrow.png");
-        position: absolute;
-        top: $gutter;
-        left: calc(50% - 15px);
-        width: 30px;
-        height: 29px;
-    }
-
-    &.no-symbol {
-        margin-left: 0;
-        margin-bottom: $small-spacing;
-        text-align: left;
-
-        &::after {
-            display: none;
-        }
-    }
 }
 
-.u-highlight {
-    color: $yellow;
+.u-text-left {
+    text-align: left;
+}
+
+.u-text-center {
+    text-align: center;
+}
+
+.u-text-right {
+    text-align: right;
 }
 
 /**
@@ -283,6 +249,17 @@ abbr {
     }
 }
 
+address {
+    @include fluid-body-copy();
+    display: block;
+    font-style: normal;
+    line-height: $heading-height;
+
+    & + & {
+        margin-top: math.div($line-height, 2);
+    }
+}
+
 mark {
     background-color: $blue;
     color: $white;
@@ -318,9 +295,16 @@ blockquote {
 }
 
 hr {
-    width: 50%;
-    height: 10px;
-    margin: 0 auto $base-spacing;
+    width: 100%;
+    max-width: 100%;
+    height: $border-width;
+    margin: $base-spacing auto;
     border: 0;
+    background-color: $white--darker;
+}
+
+::selection {
+    color: $white;
     background-color: $blue;
+    text-shadow: none;
 }

@@ -37,10 +37,18 @@ $navy:     #255d7a;
 $purple:   #632a79;
 $pink:     #eb3e72;
 
-$color--notice: $blue;
-$color--success: $green;
-$color--warning: $yellow;
-$color--error: $red;
+// $primary:            $red;
+// $primary--light:   #f23333;
+// $primary--lighter: #f96666;
+// $primary--dark:    #b30000;
+// $primary--darker:    $burgundy;
+
+// $background-color: #f7f7f7;
+
+// $color--notice: $blue;
+// $color--success: $green;
+// $color--warning: $yellow;
+// $color--error: $red;
 
 $focus-outline: 2px solid color.adjust($blue, $alpha: -0.6);
 $focus-offset: 2px;
@@ -65,7 +73,6 @@ $github-color:    #4078c0;
 $font-body:   "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Avenir Next", "Avenir", "Segoe UI", "Lucida Grande", "Helvetica Neue", "Helvetica", "Fira Sans", "Roboto", "Noto", "Droid Sans", "Cantarell", "Oxygen", "Ubuntu", "Franklin Gothic Medium", "Century Gothic", "Liberation Sans", sans-serif;
 $font-header: "Source Serif 4", "Garamond", "Baskerville", "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
 $font-code:   "Monaco", "Consolas", "Lucida Console", monospace;
-$font-impossible: "Playfair Display", Georgia, serif;
 
 // Font Sizes
 $font-h1:      4.5em;      // 72px
@@ -102,10 +109,10 @@ $heading-height: 1.2em;
 // =============================================================================
 
 // Speeds
-$speed: 300ms;
-$speed-fast: math.div($speed, 2);
-$speed-slow: $speed * 1.5;
-$base-duration: $speed;
+$base-duration: 350ms;
+$speed: $base-duration;
+$speed-fast: $speed / 2;
+$speed-slow: $speed * 2;
 
 // Cubic Bezier Styles
 $bezier-sine:  cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -122,8 +129,8 @@ $bezier-slide: cubic-bezier(0, 0, 0.2, 1);
 // =============================================================================
 
 // Widths
-$container-width: 1280px;
-$inner-width: 1000px;
+$container-width: 1440px;
+$inner-width: 1280px;
 $copy-width: 80ch;
 $padding: math.div($container-width - $inner-width, 2);
 
@@ -142,7 +149,9 @@ $large-spacing: $base-spacing * 2;
 $small-spacing: math.div($base-spacing, 2);
 
 // Borders
-$border-radius: 6px;
+$border-radius: 5px;
+$border-radius-sm: 5px;
+$border-width: 2px;
 
 // Media Queries (@include-media)
 // =============================================================================
@@ -155,3 +164,17 @@ $breakpoints: (
     big: 1500px,
     huge: 1800px
 ) !default;
+
+// // CSS Vars
+// // =============================================================================
+
+// :root {
+//     // Fancybox
+//     --fancybox-bg: fade-out($black, 0.33) !important;
+//     --fancybox-color: $white !important;
+//     --f-button-color: $primary !important;
+//     // Swiper
+//     --swiper-theme-color: #{$blue} !important;
+//     --swiper-navigation-color: $black !important;
+//     --swiper-navigation-size: #{$gutter} !important;
+// }
