@@ -2,7 +2,7 @@
   "name": "onemohrtime/hero-slideshow",
   "title": "Hero Slideshow",
   "category": "design",
-  "icon": "cover-image",
+  "icon": "slides",
   "supports": {
     "align": false,
     "anchor": true,
@@ -17,6 +17,6 @@
     "mode": "preview",
     "renderTemplate": "render.php"
   },
-  "style": "file:../../assets/css/hero-style.css",
+  "style": "file:../../assets/css/hero-slideshow-style.css",
   "textdomain": "onemohrtime"
 }

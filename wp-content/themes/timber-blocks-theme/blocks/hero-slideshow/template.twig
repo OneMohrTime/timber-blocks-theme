@@ -1,102 +1,64 @@
 {# -- Component Variables -- #}
 
-{# {% set var = value %} #}
+{# {% set section = {} %} #}
 
 {# -- Component Template -- #}
 
-{# -- Component Variables -- #}
+<section class="c-banner--slideshow{% if textAlign %} u-{{ textAlign }}{% endif %}" aria-label="Hero slideshow" id="{{ ID }}">
+    {% for slide in slides %}
+        <article class="c-banner--slideshow__slide c-banner{% if aspectRatio and aspectRatio != 'none' %} u-ratio u-{{ aspectRatio }}{% endif %}">
+            <div class="c-banner__text">
+                {% if slide.eyebrow %}
+                    <strong class="u-eyebrow">{{ slide.eyebrow }}</strong>
+                {% endif %}
 
-{% set this = {
-    headline: params.headline|default(post.title),
-    text: params.text|default(null),
-    image: params.image|default(post.thumbnail),
-    video: params.video|default(null),
-    buttons: params.buttons|default(null),
-    type: params.style ?? 'split',
-    orientation: params.orientation|default(null),
-    fontSize: params.textSize ?? 'md',
-    spacing: params.spacing ?? 'md',
-    colorScheme1: params.lightDark ?? 'light',
-    colorScheme2: params.colors ?? 'light',
-} %}
+                {% if loop.first %}
+                    <h1 class="u-title">{{ slide.headline }}</h1>
+                {% else %}
+                    <h2 class="u-title">{{ slide.headline }}</h2>
+                {% endif %}
 
-{% if this.fontSize == 'lg' %}
-    {% set headerClass = 'title' %}
-{% elseif this.fontSize == 'sm' %}
-    {% set headerClass = 'subheadline' %}
-{% else %}
-    {% set headerClass = 'headline' %}
-{% endif %}
+                {% if slide.subheadline %}
+                    <h3 class="u-lead">{{ slide.subheadline }}</h3>
+                {% endif %}
 
-{# -- Component Template -- #}
+                {% if slide.text %}
+                    <div class="u-wysiwyg">
+                        {{ slide.text }}
+                    </div>
+                {% endif %}
 
-<section class="c-banner is-{{ this.type }}{% if this.type != 'video' %} is-{{ this.orientation }}-side{% endif %} u-spacing-{{ this.spacing }}{% if this.type == 'buttons' %} u-color-scheme-{{ this.colorScheme2 }}{% else %} is-{{ this.colorScheme1 }}-text{% endif %}">
-
-    <article class="c-banner__text">
-
-        <h1 class="u-{{ headerClass }}">{{ this.headline }}</h1>
-
-        {% if this.type == 'default' and this.image != empty %}
-            {% if this.text %}
-                <div class="u-lead">{{ this.text }}</div>
-            {% endif %}
-        {% else %}
-            {% if this.text %}
-                <div class="u-wysiwyg">{{ this.text }}</div>
-            {% endif %}
-        {% endif %}
-
-        {# {% if this.type == 'buttons' and this.buttons is not empty %}
-            <div class="c-button-row">
-                {% for button in this.buttons %}
-                    {% include '_elements/button.twig' with {
-                        params: {
-                            url: button.button.url,
-                            text: button.button.title,
-                            target: button.button.target
-                        }
-                    } only %}
-                {% endfor %}
+                {% if slide.buttons %}
+                    <div class="c-button-row">
+                        {% for button in slide.buttons %}
+                            {% if button.button %}
+                                {% include '_elements/button.twig' with {
+                                    params: {
+                                        url: button.button.url,
+                                        text: button.button.title,
+                                        target: button.button.target
+                                    }
+                                } only %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
-        {% endif %} #}
 
-        {% if this.buttons %}
-            <div class="c-button-row">
-                {% for button in this.buttons %}
-                    {% include '_elements/button.twig' with {
-                        params: {
-                            url: button.button.url,
-                            text: button.button.title,
-                            target: button.button.target
-                        }
-                    } only %}
-                {% endfor %}
-            </div>
-        {% endif %}
-    </article>
-
-    <figure class="c-banner__media">
-        {% if this.type == 'video' %}
-            {% set moviePoster = get_image(this.image) %}
-            <video width="{{ this.video.width }}" height="{{ this.video.height }}" class="c-banner__video" autoplay loop muted poster="{{ moviePoster.src('medium') }}" preload="none">
-                <source src="{{ this.video.url }}" type="{{ this.video.mime_type }}">
-                Your browser does not support the video tag.
-            </video>
-
-        {% else %}
-            {% include '_elements/picture.twig' with {
-                params: {
-                    src: image.src|default(null),
-                    srcset: image.srcset|default(''),
-                    sizes: image.sizes|default(null),
-                    width: image.width|default(null),
-                    height: image.height|default(null),
-                    alt: image.alt|default(null),
-                    webp: image.webp|default(null),
-                }
-            } only %}
-
-        {% endif %}
-    </figure>
-
+            <figure class="c-banner__media" style="--slide-overlay: {{ (slide.overlay|default(0)) / 100 }};">
+                {% include '_elements/picture.twig' with {
+                    params: {
+                        src: slide.image.src|default(null),
+                        srcset: slide.image.srcset|default(''),
+                        sizes: slide.image.sizes|default(null),
+                        width: slide.image.width|default(null),
+                        height: slide.image.height|default(null),
+                        alt: slide.image.alt|default(null),
+                        webp: slide.image.webp|default(null)
+                    },
+                    classes: 'c-media__image'
+                } only %}
+            </figure>
+        </article>
+    {% endfor %}
 </section>
