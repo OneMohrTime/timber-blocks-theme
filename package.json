@@ -24,7 +24,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "production": "vite build"
+    "production": "vite build",
+    "watch": "vite build --watch --minify false"
   },
   "devDependencies": {
     "sass": "^1.106.1"
