@@ -131,11 +131,11 @@ class StarterSite extends Site {
      * Load editor assets so block previews, global editor styles, and block-specific improvements work.
      */
     public function load_editor_assets() {
-        $editor_css = get_template_directory() . '/assets/css/app.css';
+        $editor_css = get_template_directory() . '/assets/css/app-styles.css';
 
         if ( file_exists( $editor_css ) ) {
-            wp_enqueue_style( 'timber-blocks-theme-editor', get_template_directory_uri() . '/assets/css/app.css', [], filemtime( $editor_css ) );
-}
+            wp_enqueue_style( 'timber-blocks-theme-editor', get_template_directory_uri() . '/assets/css/app-styles.css', [], filemtime( $editor_css ) );
+        }
     }
 
     /**
