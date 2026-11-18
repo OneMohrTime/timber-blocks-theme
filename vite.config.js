@@ -8,6 +8,7 @@ export default defineConfig({
       input: {
         app: 'wp-content/themes/timber-blocks-theme/src/scripts/app.js',
         'app-style': 'wp-content/themes/timber-blocks-theme/src/styles/app.scss',
+        editor: 'wp-content/themes/timber-blocks-theme/src/styles/editor.scss',
         'hero-banner-script': 'wp-content/themes/timber-blocks-theme/blocks/hero-banner/index.js',
         'hero-banner-style': 'wp-content/themes/timber-blocks-theme/blocks/hero-banner/style.scss',
         'hero-slideshow-script': 'wp-content/themes/timber-blocks-theme/blocks/hero-slideshow/index.js',

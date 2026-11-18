@@ -192,7 +192,7 @@ class StarterSite extends Site {
         //     )
         // ) );
 
-        add_editor_style( 'assets/css/app.css' );
+        add_editor_style( 'assets/css/editor.css' );
 
         register_nav_menus([
             'primary' => 'Primary Navigation',
